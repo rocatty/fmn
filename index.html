@@ -941,9 +941,12 @@
 			if($("#endorphin").is(":checked")){
 				$("#endorphinItem").prop("disabled", false);
 				$("#endorphinCnt").prop("disabled", false);
+				$("#endorphinAdd").prop("disabled", false);
+				
 			} else {
 				$("#endorphinItem").prop("disabled", true);
 				$("#endorphinCnt").prop("disabled", true);
+				$("#endorphinAdd").prop("disabled", true);
 			}
 		});
 
@@ -951,9 +954,11 @@
 			if($("#setpiece").is(":checked")){
 				$("#setpieceItem").prop("disabled", false);
 				$("#setpieceCnt").prop("disabled", false);
+				$("#setpieceAdd").prop("disabled", false);
 			} else {
 				$("#setpieceItem").prop("disabled", true);
 				$("#setpieceCnt").prop("disabled", true);
+				$("#setpieceAdd").prop("disabled", false);
 			}
 		});
 
@@ -984,10 +989,12 @@
 				$("#FootItem").prop("disabled", false);
 				$("#FootCnt").prop("disabled", false);
 				$("#FootPM").prop("disabled", false);
+				$("#FootAdd").prop("disabled", false);
 			} else {
 				$("#FootItem").prop("disabled", true);
 				$("#FootCnt").prop("disabled", true);
-				$("#FootPM").prop("disabled", false);
+				$("#FootPM").prop("disabled", true);
+				$("#FootAdd").prop("disabled", true);
 			}
 		});			
 
@@ -1026,8 +1033,10 @@
 		$("#posTTranig").on("click", function() {
 			if($("#posTTranig").is(":checked")){
 				$("#posTTranigItem").prop("disabled", false);
+				$("#posTTranigAdd").prop("disabled", false);
 			} else {
 				$("#posTTranigItem").prop("disabled", true);
+				$("#posTTranigAdd").prop("disabled", true);
 			}
 		});
 		
@@ -1035,9 +1044,13 @@
 			if($("#singleTranig").is(":checked")){
 				$("#singleTranigItem").prop("disabled", false);
 				$("#singleHardTranigItem").prop("disabled", false);
+				$("#singleHTranigAdd").prop("disabled", false);
+				$("#singleTranigAdd").prop("disabled", false);
 			} else {
 				$("#singleTranigItem").prop("disabled", true);
 				$("#singleHardTranigItem").prop("disabled", true);
+				$("#singleHTranigAdd").prop("disabled", true);
+				$("#singleTranigAdd").prop("disabled", true);
 			}
 		});
 		
@@ -1055,9 +1068,11 @@
 			if($("#playerframe").is(":checked")){
 				$("#playerheight").prop("disabled", false);
 				$("#playerweight").prop("disabled", false);
+				$("#playerframeAdd").prop("disabled", false);
 			} else {
 				$("#playerheight").prop("disabled", true);
 				$("#playerweight").prop("disabled", true);
+				$("#playerframeAdd").prop("disabled", true);
 			}
 		});
 		
@@ -1485,27 +1500,33 @@
 		});
 		
 		$("#endorphinReset").on("click", function() {
+			$("#endorphin").prop("checked",false);
+			$("#endorphinAdd").prop("disabled", true);
+			$("#endorphinItem").prop("disabled", true);
 			$("#endorphinText").val("");
 			endorphinCount = 0;
 			resultSetting();
 		});
 
 		$("#setpieceReset").on("click", function() {
+			$("#setpiece").prop("checked",false);
+			$("#setpieceAdd").prop("disabled",false);
+			$("#setpieceItem").prop("disabled",false);
 			$("#setpieceText").val("");
-			//$("#setpiece").prop("checked",false);
+			
 			setpieceCount = 0;
 			resultSetting();
 		});
 		
 		$("#FootballSchoolReset").on("click", function() {
 			$("#FootballSchoolText").val("");
-			//$("#FootballSchool").prop("checked",false);
 			footballschoolCount = 0;
 			resultSetting();
 		});
 		$("#FootReset").on("click", function() {
 			$("#FootText").val("");
-			//$("#Foot").prop("checked",false);
+			$("#Foot").prop("checked",false);
+			$("#FootAdd").prop("disabled",false);
 			footCount = 0;
 			resultSetting();
 		});
@@ -1519,7 +1540,9 @@
 		
 		$("#posTTranigReset").on("click", function() {
 			$("#psTText").val("");
-			//$("#setpiece").prop("checked",false);
+			$("#posTTranig").prop("checked",false);
+			$("#posTTranigAdd").prop("disabled",false);
+			$("#posTTranigItem").prop("disabled",false);
 			positionCount = 0;
 			resultSetting();
 		});
@@ -1527,6 +1550,10 @@
 		$("#singleTranigReset").on("click", function() {
 			$("#singleTraningText").val("");
 			$("#singleTranig").prop("checked",false);
+			$("#singleHTranigAdd").prop("disabled",false);
+			$("#singleHardTranigItem").prop("disabled",false);
+			$("#singleTranigAdd").prop("disabled",false);
+			$("#singleTranigItem").prop("disabled",false);
 			singleTCount = 0;
 			resultSetting();
 		});
@@ -1534,6 +1561,10 @@
 		$("#SkillbookReset").on("click", function() {
 			$("#SkBookText").val("");
 			$("#skillbook").prop("checked",false);
+			$("#DelskillbookAdd").prop("disabled",false);
+			$("#DelSkillbookItem").prop("disabled",false);
+			$("#AddSkillbookAdd").prop("disabled",false);
+			$("#AddSkillbookItem").prop("disabled",false);
 			skillbookCount = 0;
 			resultSetting();
 		});
@@ -1543,6 +1574,7 @@
 			$("#playerframe").prop("checked",false);
 			$("#playerheight").prop("disabled", true);
 			$("#playerweight").prop("disabled", true);
+			$("#playerframeAdd").prop("disabled", true);
 			playerframeCount = 0;
 			resultSetting();
 		});
