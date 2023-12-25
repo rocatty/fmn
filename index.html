@@ -157,7 +157,7 @@
 									<option value="펀칭">(GK전용) 펀칭</option>
 								</select>
 								<input type="number" id="endorphinCnt" max="9" min="0" value="0" style="min-width:70px; max-width:150px;" disabled>
-								<button id="endorphinAdd">추가</button>
+								<button id="endorphinAdd" disabled>추가</button>
 							</td>
 							<td colspan="2">
 								<input id="endorphinText" disabled>
@@ -178,7 +178,7 @@
 									<option value="장거리스로인">장거리스로인</option>
 								</select>
 								<input type="number" id="setpieceCnt" max="9" min="0" value="0" style="min-width:70px; max-width:150px;" disabled>
-								<button id="setpieceAdd">추가</button>
+								<button id="setpieceAdd" disabled>추가</button>
 							</td>
 							<td colspan="2">
 								<input id="setpieceText" disabled>
@@ -222,7 +222,7 @@
 									<option value="더티플레이">더티플레이</option>
 								</select>
 								<input type="number" id="FootballSchoolCnt" max="9" min="0" value="0" style="min-width:50px; max-width:100px;" disabled>
-								<button id="FootballSchoolAdd">추가</button>
+								<button id="FootballSchoolAdd" disabled>추가</button>
 							</td>
 							<td>
 								<input id="FootballSchoolText" disabled>
@@ -246,7 +246,7 @@
 									<option value="주발변경">주발변경</option>
 								</select>
 								<input type="number" id="FootCnt" max="9" min="0" value="0" style="min-width:50px; max-width:100px;" disabled>
-								<button id="FootAdd">추가</button>
+								<button id="FootAdd" disabled>추가</button>
 							</td>
 							<td>
 								<input id="FootText" disabled>
@@ -339,7 +339,7 @@
 									<option value="GK삭제">GK삭제</option>
 								</select>
 								<!-- <input type="number" id="posTTranigCnt" max="9" min="0" value="0" style="min-width:70px; max-width:150px;" disabled> -->
-								<button id="posTTranigAdd">추가</button>
+								<button id="posTTranigAdd" disabled>추가</button>
 							</td>
 							<td colspan="6" style="width:500px;" >
 								<input id="psTText" style="width:500px;" disabled>
@@ -455,7 +455,7 @@
 									<option value="트레콰르티스타(공격)">트레콰르티스타(공격)</option>
 									<option value="폴스나인(지원)">폴스나인(지원)</option>
 								</select>
-								<button id="singleTranigAdd">롤 훈련 추가</button>
+								<button id="singleTranigAdd" disabled>롤 훈련 추가</button>
 								<select id="singleHardTranigItem" style="min-width:120px;" disabled>
 									<option value="">--집중훈련 선택--</option>
 									<option value="">--세트피스--</option>
@@ -484,7 +484,7 @@
 									<option value="골키퍼 배급(짧은패스)">골키퍼 배급(짧은패스)</option>
 								</select>
 								<!-- <input type="number" id="posTTranigCnt" max="9" min="0" value="0" style="min-width:70px; max-width:150px;" disabled> -->
-								<button id="singleHTranigAdd">집중훈련 추가</button>
+								<button id="singleHTranigAdd" disabled>집중훈련 추가</button>
 							</td>
 							<td colspan="6" style="width:500px;" >
 								<input id="singleTraningText" style="width:500px;" disabled>
@@ -560,7 +560,7 @@
 									<option value="발로 공을 다룸">발로 공을 다룸</option>
 									<option value="수비진영에서 드리블하기">수비진영에서 드리블하기</option>
 								</select>
-								<button id="DelskillbookAdd">선플 삭제</button>
+								<button id="DelskillbookAdd" disabled>선플 삭제</button>
 								<div></div>
 								선플 추가
 									<select id="AddSkillbookItem" style="min-width:120px;" disabled>
@@ -626,7 +626,7 @@
 									<option value="수비진영에서 드리블하기">수비진영에서 드리블하기</option>
 								</select>
 								<!-- <input type="number" id="posTTranigCnt" max="9" min="0" value="0" style="min-width:70px; max-width:150px;" disabled> -->
-								<button id="AddSkillbookAdd">선플 추가</button>
+								<button id="AddSkillbookAdd" disabled>선플 추가</button>
 							</td>
 							<td colspan="6" style="width:500px;" >
 								<input id="SkBookText" style="width:500px;" disabled>
@@ -750,7 +750,8 @@
 							<th style="min-width:100px;">재계약</th>
 							<td colspan="2">
 								<input type="checkbox" id="Arenewal" value="Y"><label for="Arenewal">사용</label>
-								
+							</td>
+							<td>
 							<button id="ArenewalAdd" disabled>재계약 신청</button>
 							</td>
 							<td colspan="2">
