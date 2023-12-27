@@ -1,0 +1,1912 @@
+
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+	
+	<title>FMN UTIL - 상점 도우미(S26)</title>
+	
+	
+	
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+	</script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">  
+    <!-- Custom styles for this template-->
+    <link href="https://cktnswn010.github.io/fmn/fmn_util/css/sb-admin-2.min.css" rel="stylesheet">
+</head>
+	<style>
+	
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+		* {
+			font-family: 'Noto Sans KR', sans-serif;
+		}
+	
+	</style>
+	<body>
+			
+			<div id="container">
+			
+				
+				<nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
+  					<div class="container-fluid">
+    					<a class="navbar-brand" href="index.html">FMN UTIL</a>
+    					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      					<span class="navbar-toggler-icon"></span>
+    					</button>
+    						<!-- <div class="collapse navbar-collapse" id="navbarNav">
+      							<ul class="navbar-nav">
+      								<li class="nav-item dropdown">
+							          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							            선수 신청
+							          </a>
+							          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							            <li><a class="dropdown-item" href="FMNUserMaker_V3.html">신규 선수</a></li>
+							            <li><a class="dropdown-item" href="FMNExUserMaker_V3.html">기존 선수</a></li>
+							          </ul>
+							        </li>
+      								
+        							<li class="nav-item">
+        								<a class="nav-link active" aria-current="page" href="FMNShopHelperS25.html">상점 도우미 (S25)</a>
+        							</li>
+       							</ul>
+      							
+    						</div> -->
+  					</div>
+				</nav>
+				
+				
+				
+				
+				<h1 class="text-center">FMN S26 상점</h1>
+				<!--  상점 최대 구매 갯수 -->
+		        <input type="hidden" id="maximum" value="7">
+				<button id="btnPopup" class="btn btn-primary btn-sm">어빌가중치 보기</button>
+				<button id="btnStat" class="btn btn-primary btn-sm">능력치탭 바로가기</button>
+				<table class="table table-Primary table-hover table-sm table-bordered">
+					<tbody>
+						<tr>
+							<td colspan="10">
+								<h2 class="text-center">개인 상점</h2>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">선수명</th>
+							<td colspan="4">
+								<input type="text" id="name" style="min-width:100px; width:30%;">
+							</td>
+						</tr>
+						<tr>
+							<th style="min-width:100px;">스테로이드</th>
+							<td>
+								<input type="checkbox" id="steroid" value="Y"><label for="steroid">사용</label>
+							</td>
+						</tr>
+						<tr>
+							<th style="min-width:100px;">튜터링</th>
+							<td class="col-sm-1" style="min-width:70px;">
+								<input type="checkbox" id="tutoring" value="Y"><label for="tutoring">사용</label>
+							</td>
+							<td>
+								<select id="tutoringMinusPlus" disabled>
+									<option value="+">+</option>
+									<option value="-">-</option>
+								</select>
+								<select id="tutorItem" style="min-width:120px;" disabled>
+									<option value="">--선택--</option>
+									<option value="프로의식">프로의식</option>
+									<option value="꾸준함">꾸준함</option>
+									<option value="중요경기">중요경기</option>
+									<option value="포부">포부</option>
+									<option value="부상빈도">부상빈도</option>
+									<option value="더티플레이">더티플레이</option>
+									<option value="스포츠맨십">스포츠맨십</option>
+									<option value="적응력">적응력</option>
+									<option value="의리">의리</option>
+									<option value="압박감대처">압박감대처</option>
+									<option value="다재다능">다재다능</option>
+									<option value="논쟁성">논쟁성</option>
+								</select>
+								<!-- 
+									S25 추가, 갯수 2개 로 수정되면서 추가								
+								 -->
+								 <!-- <input type="number" id="tutoringCnt" max="1" min="0" value="0" style="min-width:70px; max-width:150px;" disabled> -->
+								<button id="tutoringAdd" disabled>추가</button>
+							</td>
+							<!-- td colspan="2" -->
+							<td colspan="2">
+								<input id="tutoringText" disabled>
+								<button id="tutoringReset">리셋</button>
+							</td>
+						</tr>
+						<tr>
+						<!-- 
+							
+							FMN S24 수정
+						
+						 -->
+							<th>엔돌핀</th>
+							<td>
+								<input type="checkbox" id="endorphin" value="Y"><label for="endorphin">사용</label>
+							</td>
+							<td>
+								<select id="endorphinItem" style="min-width:120px;" disabled>
+									<option value="">--선택--</option>
+									<option value="대담성">대담성</option>
+									<option value="리더쉽">리더쉽</option>
+									<option value="승부욕">승부욕</option>
+									<option value="적극성">적극성</option>
+									<option value="천재성">천재성</option>
+									<option value="팀워크">팀워크</option>
+									<option value="균형감각">균형감각</option>
+									<option value="활동량">활동량</option>
+									<option value="타고난체력">타고난체력</option>
+									<option value="기행">(GK전용) 기행</option>
+									<option value="돌진">(GK전용) 돌진</option>
+									<option value="펀칭">(GK전용) 펀칭</option>
+								</select>
+								<input type="number" id="endorphinCnt" max="9" min="0" value="0" style="min-width:70px; max-width:150px;" disabled>
+								<button id="endorphinAdd" disabled>추가</button>
+							</td>
+							<td colspan="2">
+								<input id="endorphinText" disabled>
+								<button id="endorphinReset">리셋</button>
+							</td>
+						</tr>
+        
+						<tr>
+							<th>세트피스</th>
+							<td>
+								 <a href="#setpiecelayer" class="btn-example"><input type="checkbox" id="setpiece" value="Y"><label for="setpiece">사용</label></a>
+							</td>
+               <div id="setpiecelayer" class="pop-layer">
+    <div class="pop-container">
+        <div class="pop-conts">
+            <!--content //-->
+							<td>
+               
+								<select id="setpieceItem" style="min-width:120px;" disabled>
+									<option value="">--선택--</option>
+									<option value="코너킥">코너킥</option>
+									<option value="프리킥">프리킥</option>
+									<option value="PK">PK</option>
+									<option value="장거리스로인">장거리스로인</option>
+								</select>
+                
+								<input id="setpieceText" disabled>
+								<input type="number" id="setpieceCnt" max="9" min="0" value="0" style="min-width:70px; max-width:150px;" disabled>
+								<button id="setpieceAdd" disabled>추가</button>
+                <div>
+								<input id="setpieceText" disabled></div>
+							</td>
+          
+
+            <div class="btn-r">
+                <a href="#" class="btn-layerClose">확인</a>
+            </div>
+            <!--// content-->
+        </div>
+    </div>
+</div>
+							<td colspan="2">
+								<input id="setpieceText" disabled>
+								<button id="setpieceReset">리셋</button>
+							</td>
+						</tr>
+						<!-- 
+						<tr>
+							<th>정관장</th>
+							<td>
+								<input type="checkbox" id="jungGwanJang" value="Y"><label for="jungGwanJang">사용</label>
+							</td>
+							<td colspan="3">
+								<select id="jungGwanJangItem" disabled>
+									<option value="-">-</option>
+									<option value="+">+</option>
+								</select>
+								<input type="number" id="jungGwanJangCnt" max="7" min="0" value="0" style="min-width:50px; max-width:100px;" disabled>
+							</td>
+						</tr>
+						 -->
+						<!-- 
+						
+						FMN S24 신규 항목 - 마빈박사으 ㅣ뭐시기 (기존 천시축구교실+정관장) (부빈/스포츠맨십/더티플레이 +/-1) 200츄
+						
+						 -->
+						<tr>
+							<th>마빈박사의 실험실</th>
+							<td>
+								<input type="checkbox" id="FootballSchool" value="Y"><label for="FootballSchool">사용</label>
+							</td>
+							<td>
+								<select id="FootballSchoolPM" disabled>
+									<option value="-">-</option>
+									<option value="+">+</option>
+								</select>
+								<select id="FootballSchoolItem" style="min-width:120px;" disabled>
+									<option value="">--선택--</option>
+									<option value="부상빈도">부상빈도</option>
+									<option value="스포츠맨십">스포츠맨십</option>
+									<option value="더티플레이">더티플레이</option>
+								</select>
+								<input type="number" id="FootballSchoolCnt" max="9" min="0" value="0" style="min-width:50px; max-width:100px;" disabled>
+								<button id="FootballSchoolAdd" disabled>추가</button>
+							</td>
+							<td>
+								<input id="FootballSchoolText" disabled>
+								<button id="FootballSchoolReset">리셋</button>
+							</td>
+						</tr>
+						
+						<tr>
+							<th>약발 훈련</th>
+							<td>
+								<input type="checkbox" id="Foot" value="Y"><label for="Foot">사용</label>
+							</td>
+							<td>
+								<select id="FootPM" disabled>
+									<option value="-">-</option>
+									<option value="+">+</option>
+								</select>
+								<select id="FootItem" style="min-width:120px;" disabled>
+									<option value="">--선택--</option>
+									<option value="약발">약발</option>
+									<option value="주발변경">주발변경</option>
+								</select>
+								<input type="number" id="FootCnt" max="9" min="0" value="0" style="min-width:50px; max-width:100px;" disabled>
+								<button id="FootAdd" disabled>추가</button>
+							</td>
+							<td>
+								<input id="FootText" disabled>
+								<button id="FootReset">리셋</button>
+							</td>
+						</tr>								
+						<!-- 
+						<tr>
+							<th>환생</th>
+							<td>
+								<input type="checkbox" id="reincarnation" value="Y"><label for="reincarnation">사용</label>
+							</td>
+							<td colspan="3">
+								<label style="font-weight: bold;">환생통분 입력 : </label>
+								<input type="text" id="reincarnationText" style="width:300px;" disabled>
+							</td>
+						</tr>
+						 -->
+						<tr>
+							<th>통합분배</th>
+							<td>
+								<input type="checkbox" id="fusionDivision" value="Y"><label for="fusionDivision">사용</label>
+							</td>
+							<td>
+								갯수
+								<input type="number" id="fusionDivisionCnt" value="0" style="min-width:50px; max-width:100px;" disabled>
+								<label style="font-weight: bold;">분배내용 입력 : </label>
+		                        <input type="text" id="inputText" disabled>
+							</td>
+							<td colspan="2">
+								<input type="text" id="fusionDivisionText" style="width:500px;" disabled>
+							</td>
+						</tr>
+						<!-- <tr>
+							<th>도박</th>
+							<td>
+								<input type="checkbox" id="gemble" value="Y"><label for="gemble">사용</label>
+							</td>
+							<td colspan="1" style="min-width:160px;">
+								갯수
+								<input type="number" id="gembleCnt" value="0" style="min-width:50px; max-width:100px;" disabled>
+								<button id="gembleAdd">추가</button>
+							</td>
+							<td colspan="2">
+								<button id="GambleReset">리셋</button>
+							</td>
+						</tr> -->
+						<tr>
+							<td colspan="10">
+								<h2 class="text-center">자유상점</h2>
+							</td>
+						</tr>
+						<tr>
+							<th>포지션 훈련</th>
+							<td>
+								<input type="checkbox" id="posTTranig" value="Y"><label for="posTTranig">사용</label>
+							</td>
+							<td>
+								<select id="posTTranigItem" style="min-width:120px;" disabled>
+									<option value="">--선택--</option>
+									<option value="ST추가">ST추가</option>
+									<option value="ST삭제">ST삭제</option>
+									<option value="AML추가">AML추가</option>
+									<option value="AML삭제">AML삭제</option>
+									<option value="CAM추가">CAM추가</option>
+									<option value="CAM삭제">CAM삭제</option>
+									<option value="AMR추가">AMR추가</option>
+									<option value="AMR삭제">AMR삭제</option>
+									<option value="ML추가">ML추가</option>
+									<option value="ML삭제">ML삭제</option>
+									<option value="MC추가">MC추가</option>
+									<option value="MC삭제">MC삭제</option>
+									<option value="MR추가">MR추가</option>
+									<option value="MR삭제">MR삭제</option>
+									<option value="LDM추가">LDM추가</option>
+									<option value="LDM삭제">LDM삭제</option>
+									<option value="CDM추가">CDM추가</option>
+									<option value="CDM삭제">CDM삭제</option>
+									<option value="RDM추가">RDM추가</option>
+									<option value="RDM삭제">RDM삭제</option>
+									<option value="LWB추가">LWB추가</option>
+									<option value="RWB삭제">RWB삭제</option>
+									<option value="LB추가">LB추가</option>
+									<option value="LB삭제">LB삭제</option>
+									<option value="CB추가">CB추가</option>
+									<option value="CB삭제">CB삭제</option>
+									<option value="RB추가">RB추가</option>
+									<option value="RB삭제">RB삭제</option>
+									<option value="GK추가">GK추가</option>
+									<option value="GK삭제">GK삭제</option>
+								</select>
+								<!-- <input type="number" id="posTTranigCnt" max="9" min="0" value="0" style="min-width:70px; max-width:150px;" disabled> -->
+								<button id="posTTranigAdd" disabled>추가</button>
+							</td>
+							<td colspan="6" style="width:500px;" >
+								<input id="psTText" style="width:500px;" disabled>
+								<button id="posTTranigReset">리셋</button>
+							</td>
+						</tr>
+						<tr>
+							<th>개인 훈련</th>
+							<td>
+								<input type="checkbox" id="singleTranig" value="Y"><label for="singleTranig">사용</label>
+							</td>
+							<td>
+								<select id="singleTranigItem" style="min-width:120px;" disabled>
+									<option value="">--Roll 선택--</option>
+									<option value="">--GK--</option>
+									<option value="골키퍼(수비)">골키퍼(수비)</option>
+									<option value="스위퍼키퍼(수비)">스위퍼키퍼(수비)</option>
+									<option value="스위퍼키퍼(지원)">스위퍼키퍼(지원)</option>
+									<option value="스위퍼키퍼(공격)">스위퍼키퍼(공격)</option>
+									<option value="">--CB--</option>
+									<option value="중앙수비수(수비)">중앙수비수(수비)</option>
+									<option value="중앙수비수(스토퍼)">중앙수비수(스토퍼)</option>
+									<option value="중앙수비수(커버)">중앙수비수(커버)</option>
+									<option value="리베로(수비)">리베로(수비)</option>
+									<option value="리베로(지원)">리베로(지원)</option>
+									<option value="공격형수비수(수비)">공격형수비수(수비)</option>
+									<option value="공격형수비수(스토퍼)">공격형수비수(스토퍼)</option>
+									<option value="공격형수비수(커버)">공격형수비수(커버)</option>
+									<option value="안정형수비수(수비)">안정형수비수(수비)</option>
+									<option value="안정형수비수(커버)">안정형수비수(커버)</option>
+									<option value="안정형수비수(스토퍼)">안정형수비수(스토퍼)</option>
+									<option value="와이드센터백(수비)">와이드센터백(수비)</option>
+									<option value="와이드센터백(커버)">와이드센터백(커버)</option>
+									<option value="와이드센터백(스토퍼)">와이드센터백(스토퍼)</option>
+									<option value="">--LWB/RWB--</option>
+									<option value="윙백(수비)">윙백(수비)</option>
+									<option value="윙백(지원)">윙백(지원)</option>
+									<option value="윙백(공격)">윙백(공격)</option>
+									<option value="윙백(자유)">윙백(자유)</option>
+									<option value="인버티드윙백(수비)">인버티드윙백(수비)</option>
+									<option value="인버티드윙백(지원)">인버티드윙백(지원)</option>
+									<option value="인버티드윙백(공격)">인버티드윙백(공격)</option>
+									<option value="인버티드윙백(자유)">인버티드윙백(자유)</option>
+									<option value="완성형윙백(지원)">완성형윙백(지원)</option>
+									<option value="완성형윙백(공격)">완성형윙백(공격)</option>
+									<option value="">--LB/RB--</option>
+									<option value="풀백(수비)">풀백(수비)</option>
+									<option value="풀백(지원)">풀백(지원)</option>
+									<option value="풀백(공격)">풀백(공격)</option>
+									<option value="인버티드풀백(수비)">인버티드풀백(수비)</option>
+									<option value="안정형풀백(수비)">안정형풀백(수비)</option>
+									<option value="윙백(수비)">윙백(수비)</option>
+									<option value="윙백(지원)">윙백(지원)</option>
+									<option value="윙백(공격)">윙백(공격)</option>
+									<option value="인버티드윙백(수비)">인버티드윙백(수비)</option>
+									<option value="인버티드윙백(지원)">인버티드윙백(지원)</option>
+									<option value="인버티드윙백(공격)">인버티드윙백(공격)</option>
+									<option value="완성형윙백(지원)">완성형윙백(지원)</option>
+									<option value="완성형윙백(공격)">완성형윙백(공격)</option>
+									<option value="">--DM--</option>
+									<option value="수비형미드필더(수비)">수비형미드필더(수비)</option>
+									<option value="수비형미드필더(지원)">수비형미드필더(지원)</option>
+									<option value="볼위닝미드필더(수비)">수비형미드필더(수비)</option>
+									<option value="볼위닝미드필더(지원)">볼위닝미드필더(지원)</option>
+									<option value="하프백(수비)">하프백(수비)</option>
+									<option value="앵커(수비)">앵커(수비)</option>
+									<option value="딥라잉플레이메이커(수비)">딥라잉플레이메이커(수비)</option>
+									<option value="딥라잉플레이메이커(지원)">딥라잉플레이메이커(지원)</option>
+									<option value="세군도볼란테(지원)">세군도볼란테(지원)</option>
+									<option value="세군도볼란테(공격)">세군도볼란테(공격)</option>
+									<option value="박스투박스플레이메이커(지원)">박스투박스플레이메이커(지원)</option>
+									<option value="전진형플레이메이커(지원)">전진형플레이메이커(지원)</option>
+									<option value="전진형플레이메이커(공격)">전진형플레이메이커(공격)</option>
+									<option value="볼위닝미드필더(수비)">볼위닝미드필더(수비)</option>
+									<option value="볼위닝미드필더(지원)">볼위닝미드필더(지원)</option>
+									<option value="로밍플레이메이커(지원)">로밍플레이메이커(지원)</option>
+									<option value="메짤라(지원)">메짤라(지원)</option>
+									<option value="메짤라(공격)">메짤라(공격)</option>
+									<option value="카릴레로(지원)">카릴레로(지원)</option>
+									<option value="">--AML/AMR--</option>
+									<option value="윙(지원)">윙(지원)</option>
+									<option value="윙(공격)">윙(공격)</option>
+									<option value="전진형플레이메이커(지원)">전진형플레이메이커(지원)</option>
+									<option value="전진형플레이메이커(공격)">전진형플레이메이커(공격)</option>
+									<option value="인사이드포워드(지원)">인사이드포워드(지원)</option>
+									<option value="인사이드포워드(공격)">인사이드포워드(공격)</option>
+									<option value="트레콰르티스타(공격)">트레콰르티스타(공격)</option>
+									<option value="와이드타깃포워드(지원)">와이드타깃포워드(지원)</option>
+									<option value="와이드타깃포워드(공격)">와이드타깃포워드(공격)</option>
+									<option value="라움도이터(공격)">라움도이터(공격)</option>
+									<option value="인버티드윙(지원)">인버티드윙(지원)</option>
+									<option value="인버티드윙(공격)">인버티드윙(공격)</option>
+									<option value="">--AMC--</option>
+									<option value="공격형미드필더(지원)">공격형미드필더(지원)</option>
+									<option value="공격형미드필더(공격)">공격형미드필더(공격)</option>
+									<option value="전진형플레이메이커(지원)">전진형플레이메이커(지원)</option>
+									<option value="전진형플레이메이커(공격)">전진형플레이메이커(공격)</option>
+									<option value="트레콰르티스타(공격)">트레콰르티스타(공격)</option>
+									<option value="엔간체(지원)">엔간체(지원)</option>
+									<option value="쉐도우스트라이커(공격)">쉐도우스트라이커(공격)</option>
+									<option value="">--ST--</option>
+									<option value="딥라잉포워드(지원)">딥라잉포워드(지원)</option>
+									<option value="딥라잉포워드(공격)">딥라잉포워드(공격)</option>
+									<option value="전진형포워드(공격)">전진형포워드(공격)</option>
+									<option value="타깃포워드(지원)">타깃포워드(지원)</option>
+									<option value="타깃포워드(공격)">타깃포워드(공격)</option>
+									<option value="포처(공격)">포처(공격)</option>
+									<option value="완성형포워드(지원)">완성형포워드(지원)</option>
+									<option value="완성형포워드(공격)">완성형포워드(공격)</option>
+									<option value="압박형포워드(수비)">압박형포워드(수비)</option>
+									<option value="압박형포워드(지원)">압박형포워드(지원)</option>
+									<option value="압박형포워드(공격)">압박형포워드(공격)</option>
+									<option value="트레콰르티스타(공격)">트레콰르티스타(공격)</option>
+									<option value="폴스나인(지원)">폴스나인(지원)</option>
+								</select>
+								<button id="singleTranigAdd" disabled>롤 훈련 추가</button>
+								<select id="singleHardTranigItem" style="min-width:120px;" disabled>
+									<option value="">--집중훈련 선택--</option>
+									<option value="">--세트피스--</option>
+									<option value="프리킥">프리킥</option>
+									<option value="코너킥">코너킥</option>
+									<option value="페널티킥">페널티킥</option>
+									<option value="장거리스로인">장거리스로인</option>
+									<option value="">--능력치--</option>
+									<option value="신속함">신속함</option>
+									<option value="민첩성과 균형감각">민첩성과 균형감각</option>
+									<option value="몸싸움">몸싸움</option>
+									<option value="지구력">지구력</option>
+									<option value="수비 위치선정">수비 위치선정</option>
+									<option value="공격시 움직임">공격시 움직임</option>
+									<option value="상대팀 진영">상대팀 진영</option>
+									<option value="슈팅">슈팅</option>
+									<option value="패스">패스</option>
+									<option value="크로스">크로스</option>
+									<option value="볼 처리">볼 처리</option>
+									<option value="">--GK 전용--</option>
+									<option value="골키퍼 반응">골키퍼 반응</option>
+									<option value="골키퍼 전술 훈련">골키퍼 전술 훈련</option>
+									<option value="골키퍼 개인기">골키퍼 개인기</option>
+									<option value="골키퍼 스위핑">골키퍼 스위핑</option>
+									<option value="골키퍼 배급(긴패스)">골키퍼 배급(긴패스)</option>
+									<option value="골키퍼 배급(짧은패스)">골키퍼 배급(짧은패스)</option>
+								</select>
+								<!-- <input type="number" id="posTTranigCnt" max="9" min="0" value="0" style="min-width:70px; max-width:150px;" disabled> -->
+								<button id="singleHTranigAdd" disabled>집중훈련 추가</button>
+							</td>
+							<td colspan="6" style="width:500px;" >
+								<input id="singleTraningText" style="width:500px;" disabled>
+								<button id="singleTranigReset">리셋</button>
+							</td>
+						</tr>
+						<tr>
+							<th>스킬북</th>
+							<td>
+								<input type="checkbox" id="skillbook" value="Y"><label for="skillbook">사용</label>
+							</td>
+							
+							<td>선플 삭제
+								<select id="DelSkillbookItem" style="min-width:120px;" disabled>
+									<option value="">--선택--</option>
+									<option value="왼쪽 측면 돌파 선호">왼쪽 측면 돌파 선호</option>
+									<option value="오른쪽 측면 돌파 선호">오른쪽 측면 돌파 선호</option>
+									<option value="중앙 돌파 선호">중앙 돌파 선호</option>
+									<option value="페널티 박스 안으로 침투 선호">페널티 박스 안으로 침투 선호</option>
+									<option value="수비수와 풀백 사이로 침투">수비수와 풀백 사이로 침투</option>
+									<option value="가능할 때마다 최전방으로 침투 선호">가능할 때마다 최전방으로 침투 선호</option>
+									<option value="짧고 간단한 패스 선호">짧고 간단한 패스 선호</option>
+									<option value="스루패스를 자주 시도">스루패스를 자주 시도</option>
+									<option value="중거리 슛 선호">중거리 슛 선호</option>
+									<option value="강력한 슛 선호">강력한 슛 선호</option>
+									<option value="정확한 슛 선호">정확한 슛 선호</option>
+									<option value="휘어차는 슛 선호">휘어차는 슛 선호</option>
+									<option value="골키퍼를 제치는 것을 선호">골키퍼를 제치는 것을 선호</option>
+									<option value="오프사이드 트랩 돌파를 선호">오프사이드 트랩 돌파를 선호</option>
+									<option value="아웃프런트 킥을 선호">아웃프런트 킥을 선호</option>
+									<option value="상대 선수를 엄격하게 마크">상대 선수를 엄격하게 마크</option>
+									<option value="상대 선수를 거칠게 대하는 것을 선호">상대 선수를 거칠게 대하는 것을 선호</option>
+									<option value="심판과 언쟁하는 것을 선호">심판과 언쟁하는 것을 선호</option>
+									<option value="골문과 등지는 것을 선호">골문과 등지는 것을 선호</option>
+									<option value="공을 받기위해 포지션 보다 내려옴">공을 받기위해 포지션 보다 내려옴</option>
+									<option value="2대1 패스 선호">2대1 패스 선호</option>
+									<option value="골키퍼를 넘기는 로빙 슛 선호">골키퍼를 넘기는 로빙 슛 선호</option>
+									<option value="탬포 조절을 선호">탬포 조절을 선호</option>
+									<option value="오버헤드킥을 선호">오버헤드킥을 선호</option>
+									<option value="득점 보다는 패스 하는 것을 선호">득점 보다는 패스 하는 것을 선호</option>
+									<option value="스루패스 하지 않는것을 선호">스루패스 하지 않는것을 선호</option>
+									<option value="공을 가지면 잠시 멈추는 플레이 선호">공을 가지면 잠시 멈추는 플레이 선호</option>
+									<option value="공을 차놓고 상대를 제치는 것을 선호">공을 차놓고 상대를 제치는 것을 선호</option>
+									<option value="공을 몰기 전 오른발에 공을 가지려고 시도">공을 몰기 전 오른발에 공을 가지려고 시도</option>
+									<option value="공을 몰기 전 왼발에 공을 가지려고 시도">공을 몰기 전 왼발에 공을 가지려고 시도</option>
+									<option value="공을 오래 소유하는 것을 선호">공을 오래 소유하는 것을 선호</option>
+									<option value="필요시 상대 페널티 박스에 늦게 침투 하는 것을 선호">필요시 상대 페널티 박스에 늦게 침투 하는 것을 선호</option>
+									<option value="위기 상황을 벗어나기 위해 개인기를 자주 시도">위기 상황을 벗어나기 위해 개인기를 자주 시도</option>
+									<option value="항상 후방에 있는 것을 선호">항상 후방에 있는 것을 선호</option>
+									<option value="약한 발을 선호하지 않는 것을 선호">약한 발을 선호하지 않는 것을 선호</option>
+									<option value="현란한 개인기를 자주 시도">현란한 개인기를 자주 시도</option>
+									<option value="먼 거리에서 프리킥시 슛을 자주 시도">먼 거리에서 프리킥시 슛을 자주 시도</option>
+									<option value="슬라이딩 태클 선호">슬라이딩 태클 선호</option>
+									<option value="슬라이딩 태클을 하지 않는것을 선호">슬라이딩 태클을 하지 않는것을 선호</option>
+									<option value="양쪽 측면에서 중앙으로 침투">양쪽 측면에서 중앙으로 침투</option>
+									<option value="터치라인을 따라 움직이는 것을 선호">터치라인을 따라 움직이는 것을 선호</option>
+									<option value="관중들을 열광시키는 행동을 선호">관중들을 열광시키는 행동을 선호</option>
+									<option value="빠른 박자에 슛을 자주 시도">빠른 박자에 슛을 자주 시도</option>
+									<option value="긴 패스를 자주 시도">긴 패스를 자주 시도</option>
+									<option value="패스를 발밑으로 받는 것을 선호">패스를 발밑으로 받는 것을 선호</option>
+									<option value="프리킥시 강력한 슛 선호">프리킥시 강력한 슛 선호</option>
+									<option value="상대를 여러 차례 속이는 것을 선호">상대를 여러 차례 속이는 것을 선호</option>
+									<option value="공을 넓은 지역으로 보내는 것을 선호">공을 넓은 지역으로 보내는 것을 선호</option>
+									<option value="빠르고 낮게 깔리는 스로인 구사">빠르고 낮게 깔리는 스로인 구사</option>
+									<option value="공을 자주 드리블">공을 자주 드리블</option>
+									<option value="공을 드물게 드리블">공을 드물게 드리블</option>
+									<option value="역습을 시작할때 장거리스로인 사용">역습을 시작할때 장거리스로인 사용</option>
+									<option value="수비수와 풀백 사이로 이동하지 않음">수비수와 풀백 사이로 이동하지 않음</option>
+									<option value="왼쪽 측면에서 중앙으로 침투">왼쪽 측면에서 중앙으로 침투</option>
+									<option value="중거리슛 자제">중거리슛 자제</option>
+									<option value="얼리 크로스">얼리 크로스</option>
+									<option value="오른쪽 측면에서 중앙으로 침투">오른쪽 측면에서 중앙으로 침투</option>
+									<option value="발로 공을 다룸">발로 공을 다룸</option>
+									<option value="수비진영에서 드리블하기">수비진영에서 드리블하기</option>
+								</select>
+								<button id="DelskillbookAdd" disabled>선플 삭제</button>
+								<div></div>
+								선플 추가
+									<select id="AddSkillbookItem" style="min-width:120px;" disabled>
+									<option value="">--선택--</option>
+									<option value="왼쪽 측면 돌파 선호">왼쪽 측면 돌파 선호</option>
+									<option value="오른쪽 측면 돌파 선호">오른쪽 측면 돌파 선호</option>
+									<option value="중앙 돌파 선호">중앙 돌파 선호</option>
+									<option value="페널티 박스 안으로 침투 선호">페널티 박스 안으로 침투 선호</option>
+									<option value="수비수와 풀백 사이로 침투">수비수와 풀백 사이로 침투</option>
+									<option value="가능할 때마다 최전방으로 침투 선호">가능할 때마다 최전방으로 침투 선호</option>
+									<option value="짧고 간단한 패스 선호">짧고 간단한 패스 선호</option>
+									<option value="스루패스를 자주 시도">스루패스를 자주 시도</option>
+									<option value="중거리 슛 선호">중거리 슛 선호</option>
+									<option value="강력한 슛 선호">강력한 슛 선호</option>
+									<option value="정확한 슛 선호">정확한 슛 선호</option>
+									<option value="휘어차는 슛 선호">휘어차는 슛 선호</option>
+									<option value="골키퍼를 제치는 것을 선호">골키퍼를 제치는 것을 선호</option>
+									<option value="오프사이드 트랩 돌파를 선호">오프사이드 트랩 돌파를 선호</option>
+									<option value="아웃프런트 킥을 선호">아웃프런트 킥을 선호</option>
+									<option value="상대 선수를 엄격하게 마크">상대 선수를 엄격하게 마크</option>
+									<option value="상대 선수를 거칠게 대하는 것을 선호">상대 선수를 거칠게 대하는 것을 선호</option>
+									<option value="심판과 언쟁하는 것을 선호">심판과 언쟁하는 것을 선호</option>
+									<option value="골문과 등지는 것을 선호">골문과 등지는 것을 선호</option>
+									<option value="공을 받기위해 포지션 보다 내려옴">공을 받기위해 포지션 보다 내려옴</option>
+									<option value="2대1 패스 선호">2대1 패스 선호</option>
+									<option value="골키퍼를 넘기는 로빙 슛 선호">골키퍼를 넘기는 로빙 슛 선호</option>
+									<option value="탬포 조절을 선호">탬포 조절을 선호</option>
+									<option value="오버헤드킥을 선호">오버헤드킥을 선호</option>
+									<option value="득점 보다는 패스 하는 것을 선호">득점 보다는 패스 하는 것을 선호</option>
+									<option value="스루패스 하지 않는것을 선호">스루패스 하지 않는것을 선호</option>
+									<option value="공을 가지면 잠시 멈추는 플레이 선호">공을 가지면 잠시 멈추는 플레이 선호</option>
+									<option value="공을 차놓고 상대를 제치는 것을 선호">공을 차놓고 상대를 제치는 것을 선호</option>
+									<option value="공을 몰기 전 오른발에 공을 가지려고 시도">공을 몰기 전 오른발에 공을 가지려고 시도</option>
+									<option value="공을 몰기 전 왼발에 공을 가지려고 시도">공을 몰기 전 왼발에 공을 가지려고 시도</option>
+									<option value="공을 오래 소유하는 것을 선호">공을 오래 소유하는 것을 선호</option>
+									<option value="필요시 상대 페널티 박스에 늦게 침투 하는 것을 선호">필요시 상대 페널티 박스에 늦게 침투 하는 것을 선호</option>
+									<option value="위기 상황을 벗어나기 위해 개인기를 자주 시도">위기 상황을 벗어나기 위해 개인기를 자주 시도</option>
+									<option value="항상 후방에 있는 것을 선호">항상 후방에 있는 것을 선호</option>
+									<option value="약한 발을 선호하지 않는 것을 선호">약한 발을 선호하지 않는 것을 선호</option>
+									<option value="현란한 개인기를 자주 시도">현란한 개인기를 자주 시도</option>
+									<option value="먼 거리에서 프리킥시 슛을 자주 시도">먼 거리에서 프리킥시 슛을 자주 시도</option>
+									<option value="슬라이딩 태클 선호">슬라이딩 태클 선호</option>
+									<option value="슬라이딩 태클을 하지 않는것을 선호">슬라이딩 태클을 하지 않는것을 선호</option>
+									<option value="양쪽 측면에서 중앙으로 침투">양쪽 측면에서 중앙으로 침투</option>
+									<option value="터치라인을 따라 움직이는 것을 선호">터치라인을 따라 움직이는 것을 선호</option>
+									<option value="관중들을 열광시키는 행동을 선호">관중들을 열광시키는 행동을 선호</option>
+									<option value="빠른 박자에 슛을 자주 시도">빠른 박자에 슛을 자주 시도</option>
+									<option value="긴 패스를 자주 시도">긴 패스를 자주 시도</option>
+									<option value="패스를 발밑으로 받는 것을 선호">패스를 발밑으로 받는 것을 선호</option>
+									<option value="프리킥시 강력한 슛 선호">프리킥시 강력한 슛 선호</option>
+									<option value="상대를 여러 차례 속이는 것을 선호">상대를 여러 차례 속이는 것을 선호</option>
+									<option value="공을 넓은 지역으로 보내는 것을 선호">공을 넓은 지역으로 보내는 것을 선호</option>
+									<option value="빠르고 낮게 깔리는 스로인 구사">빠르고 낮게 깔리는 스로인 구사</option>
+									<option value="공을 자주 드리블">공을 자주 드리블</option>
+									<option value="공을 드물게 드리블">공을 드물게 드리블</option>
+									<option value="역습을 시작할때 장거리스로인 사용">역습을 시작할때 장거리스로인 사용</option>
+									<option value="수비수와 풀백 사이로 이동하지 않음">수비수와 풀백 사이로 이동하지 않음</option>
+									<option value="왼쪽 측면에서 중앙으로 침투">왼쪽 측면에서 중앙으로 침투</option>
+									<option value="중거리슛 자제">중거리슛 자제</option>
+									<option value="얼리 크로스">얼리 크로스</option>
+									<option value="오른쪽 측면에서 중앙으로 침투">오른쪽 측면에서 중앙으로 침투</option>
+									<option value="발로 공을 다룸">발로 공을 다룸</option>
+									<option value="수비진영에서 드리블하기">수비진영에서 드리블하기</option>
+								</select>
+								<!-- <input type="number" id="posTTranigCnt" max="9" min="0" value="0" style="min-width:70px; max-width:150px;" disabled> -->
+								<button id="AddSkillbookAdd" disabled>선플 추가</button>
+							</td>
+							<td colspan="6" style="width:500px;" >
+								<input id="SkBookText" style="width:500px;" disabled>
+								<button id="SkillbookReset">리셋</button>
+							</td>
+						</tr>
+						<tr>
+							<th style="min-width:100px;">성장호르몬</th>
+							<td class="col-sm-1" style="min-width:70px;">
+								<input type="checkbox" id="playerframe" value="Y"><label for="playerframe">사용</label>
+							</td>
+							<td>
+							키
+							<input type="number" id="playerheight" max="210" min="150" value="150" disabled>
+							몸무게
+							<input type="number" id="playerweight" max="120" min="55" value="55"  disabled>
+							<button id="playerframeAdd" disabled>등록</button>
+							</td>							
+							<td colspan="2">
+								<input id="playerframeText" style="width:500px;" disabled>
+								<button id="playerframeReset">리셋</button>
+							</td>
+						</tr>
+						<tr>
+							<th style="min-width:100px;">이름 변경</th>
+							<td class="col-sm-1" style="min-width:70px;">
+								<input type="checkbox" id="playername" value="Y"><label for="playername">사용</label>
+							</td>
+							<td>
+							변경할 이름
+							<input type="text" id="playernameItem" disabled>
+							<button id="playernameAdd" disabled>등록</button>
+							</td>							
+							<td colspan="2">
+								<input id="playernameText" style="width:500px;" disabled>
+								<button id="playernameReset">리셋</button>
+							</td>
+						</tr>
+						<tr>
+							<th style="min-width:100px;">미용</th>
+							<td class="col-sm-1" style="min-width:70px;">
+								<input type="checkbox" id="beauty" value="Y"><label for="beauty">사용</label>
+							</td>
+							<td>
+							피부
+							<input type="number" id="beautySkin" max="20" min="1" value="0" disabled>
+							머리색
+							<select id="beautyHair" style="min-width:120px;" disabled>
+									<option value="">--선택--</option>
+									<option value="블랙">블랙</option>
+									<option value="그레이">그레이</option>
+									<option value="레드">레드</option>
+									<option value="골드">골드</option>
+									<option value="브라운">브라운</option>
+							</select>
+							<button id="beautyAdd" disabled>추가</button>
+							</td>							
+							<td colspan="2">
+								<input id="beautyText" style="width:500px;" disabled>
+								<button id="beautyReset">리셋</button>
+							</td>
+						</tr>
+						<tr>
+							<th style="min-width:100px;">메타몽</th>
+							<td class="col-sm-1" style="min-width:70px;">
+								<input type="checkbox" id="metamon" value="Y"><label for="metamon">사용</label>
+							</td>
+							<td>
+							능력치
+		                    <input type="text" id="metamoninputText" disabled>
+							수치
+							<input type="number" id="metamonItemFigure" max="13" min="3" value="3" disabled>
+							<button id="metamonAdd" disabled>추가</button>
+							주발변경 L
+							<input type="number" id="metamonFootL" max="20" min="4" value="0" disabled>
+							R
+							<input type="number" id="metamonFootR" max="20" min="4" value="0" disabled>
+							<button id="metamonFootAdd" disabled>변경</button>
+							</td>							
+							<td colspan="2">
+								<input id="metamonText" style="width:500px;" disabled>
+								<button id="metamonReset">리셋</button>
+							</td>
+						</tr>
+						<tr>
+							<th style="min-width:100px;">슈퍼메타몽</th>
+							<td class="col-sm-1" style="min-width:70px;">
+								<input type="checkbox" id="spmetamon" value="Y"><label for="spmetamon">사용</label>
+							</td>
+							<td>
+							능력치 지정
+		                    <input type="text" id="spmetamoninputText" disabled>
+							<button id="spmetamonAdd" disabled>추가</button>
+							주발변경 L
+							<input type="number" id="spmetamonFootL" max="20" min="4" value="0" disabled>
+							R
+							<input type="number" id="spmetamonFootR" max="20" min="4" value="0" disabled>
+							<button id="spmetamonFootAdd" disabled>변경</button>
+							</td>							
+							<td colspan="2">
+								<input id="spmetamonText" style="width:500px;" disabled>
+								<button id="spmetamonReset">리셋</button>
+							</td>
+						</tr>
+						<tr>
+							<th style="min-width:100px;">SNS</th>
+							<td class="col-sm-1" style="min-width:70px;">
+								<input type="checkbox" id="snss" value="Y"><label for="snss">사용</label>
+							</td>
+							<td>
+							추가할 이름
+							<input type="text" id="snsItem" disabled>
+							<button id="snsAdd" disabled>추가</button>
+							</td>							
+							<td colspan="2">
+								<input id="snsText" style="width:500px;" disabled>
+								<button id="snsReset">리셋</button>
+							</td>
+						</tr>
+						<tr>
+							<th style="min-width:100px;">재계약</th>
+							<td class="col-sm-1" style="min-width:70px;">
+								<input type="checkbox" id="Arenewal" value="Y"><label for="Arenewal">사용</label>
+							</td>
+							<td>
+							<button id="ArenewalAdd" disabled>재계약 신청</button>
+							</td>
+							<td colspan="2">
+								<input id="ArenewalText" style="width:500px;" disabled>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="5">
+								<textarea id="result" rows="5" style="width:100%;" placeholder="상점 갯수 초과하면 리셋 됩니다. 통분입력은 깎을꺼(-), 올릴꺼(+) 순으로 입력됩니다."></textarea>
+								<button id="copy" class="btn btn-primary" style="width:100%;">복사하기</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+	    
+	</body>
+	<script type="text/javascript">
+		var endorphinCount = 0;
+		var tutoringCount = 0;
+		var setpieceCount  = 0;
+		var footballschoolCount  = 0;
+		var footCount  = 0;
+		var gembleCount  = 0;
+		var positionCount = 0;
+		var singleTCount = 0;
+		var skillbookCount = 0;
+		var playerframeCount = 0;
+		var playernameCount = 0;
+		var metamonCount = 0;
+		var metamonFCount = 0;
+		var metamonFTCount = 0;
+		var spmetamonCount = 0;
+		var spmetamonFCount = 0;
+		var spmetamonFTCount = 0;
+		var beautyCount = 0;
+		var snsCount = 0;
+		var ArenewalCount = 0;
+        var minus = true;
+        var fusionUseCnt = 1;
+        var fusionFinish = false;
+        var stateChange = false;
+        var availableTags = [
+                            "개인기",
+                            "골 결정력",
+                            "드리블",
+                            "볼 트래핑",
+                            "일대일마크",
+                            "장거리스로인",
+                            "중거리슛",
+                            "코너킥",
+                            "크로스",
+                            "태클",
+                            "패스",
+                            "퍼스트터치",
+                            "페널티킥",
+                            "프리킥",
+                            "헤더",
+                            "공격위치선정",
+                            "대담성",
+                            "리더십",
+                            "수비위치선정",
+                            "승부욕",
+                            "시야",
+                            "예측력",
+                            "위치선정",
+                            "적극성",
+                            "집중력",
+                            "천재성",
+                            "침착성",
+                            "팀워크",
+                            "판단력",
+                            "활동량",
+                            "가속도",
+                            "균형감각",
+                            "몸싸움",
+                            "민첩성",
+                            "점프 거리",
+                            "주력",
+                            "지구력",
+                            "타고난 체력",
+                            "1:1 방어(GK전용)",
+                            "골킥(GK전용)",
+                            "공 던지기(GK전용)",
+                            "공중 장악력(GK전용)",
+                            "기행(GK전용)",
+                            "돌진(빈도)(GK전용)",
+                            "반사신경(GK전용)",
+                            "볼 핸들링(GK전용)",
+                            "수비 조율(GK전용)",
+                            "펀칭(빈도)(GK전용)",
+                            "페널티 박스 장악력(GK전용)"
+                        ];
+
+        $( "#inputText" ).autocomplete({
+            source: availableTags
+        });
+		
+		$( "#metamoninputText").autocomplete({
+            source: availableTags
+		});
+		
+		$( "#spmetamoninputText").autocomplete({
+            source: availableTags
+		});
+
+        $( "#inputText" ).on("keyup", function(e) {
+            if(e.keyCode == 13) {
+		if(fusionFinish) {
+			return;
+		} else {
+			if($("#inputText").val() != null && $("#inputText").val() != "") {
+				if(fusionFinish) {
+					return;
+				}
+			    if(minus) {
+					if(fusionUseCnt >= Number($("#fusionDivisionCnt").val())) {
+						minus = false;
+						stateChange = true;
+					}
+					$("#fusionDivisionText").val($("#fusionDivisionText").val() + " " + $("#inputText").val() + "-1");
+					fusionUseCnt++;
+			    } else if(!minus) {
+					if(stateChange && fusionUseCnt > Number($("#fusionDivisionCnt").val())) {
+						fusionUseCnt = 1;
+					}
+					if(fusionUseCnt == 1) {
+						stateChange = false;
+					}
+					if(fusionUseCnt > Number($("#fusionDivisionCnt").val())) {
+						fusionFinish = true;
+						return;
+					}
+
+					$("#fusionDivisionText").val($("#fusionDivisionText").val() + " " + $("#inputText").val() + "+1");
+					fusionUseCnt++;
+			    }
+			} else {
+				if(!minus && stateChange && fusionUseCnt == 1) {
+					alert("플러스 시킬 항목을 입력하세요.");
+					return;
+				}
+			    if(fusionUseCnt > Number($("#fusionDivisionCnt").val())) {
+					if(minus || $("#fusionDivisionText").val().indexOf("+") < 0) {
+						minus = false;
+						stateChange = true;
+						fusionUseCnt = 1;
+						return;
+					} else {
+						fusionFinish = true;
+					}
+			    }
+			    var lastItemNumber = Number($("#fusionDivisionText").val().slice(-1)) + 1;
+
+			    fusionUseCnt++;
+			    $("#fusionDivisionText").val($("#fusionDivisionText").val().substring(0,$("#fusionDivisionText").val().length-1) + lastItemNumber);
+				if(fusionUseCnt > Number($("#fusionDivisionCnt").val())) {
+					if(minus) {
+						minus = false;
+						stateChange = true;
+						fusionUseCnt = 1;
+					} else {
+						fusionFinish = true;
+					}
+				}
+			}
+			$("#inputText").val("");
+		}
+            }
+        });
+
+		$("#tutoring").on("click", function() {
+			if($("#tutoring").is(":checked")){
+				$("#tutorItem").prop("disabled", false);
+				$("#tutoringMinusPlus").prop("disabled", false);
+				$("#tutoringCnt").prop("disabled", false);
+				$("#tutoringAdd").prop("disabled", false);
+			} else {
+				$("#tutorItem").prop("disabled", true);
+				$("#tutoringMinusPlus").prop("disabled", true);
+				$("#tutoringCnt").prop("disabled", true);
+				$("#tutoringAdd").prop("disabled", true);
+			}
+		});
+
+		$("#endorphin").on("click", function() {
+			if($("#endorphin").is(":checked")){
+				$("#endorphinItem").prop("disabled", false);
+				$("#endorphinCnt").prop("disabled", false);
+				$("#endorphinAdd").prop("disabled", false);
+				
+			} else {
+				$("#endorphinItem").prop("disabled", true);
+				$("#endorphinCnt").prop("disabled", true);
+				$("#endorphinAdd").prop("disabled", true);
+			}
+		});
+
+		$("#setpiece").on("click", function() {
+			if($("#setpiece").is(":checked")){
+				$("#setpieceItem").prop("disabled", false);
+				$("#setpieceCnt").prop("disabled", false);
+				$("#setpieceAdd").prop("disabled", false);
+			} else {
+				$("#setpieceItem").prop("disabled", true);
+				$("#setpieceCnt").prop("disabled", true);
+				$("#setpieceAdd").prop("disabled", true);
+			}
+		});
+
+		$("#jungGwanJang").on("click", function() {
+			if($("#jungGwanJang").is(":checked")){
+				$("#jungGwanJangItem").prop("disabled", false);
+				$("#jungGwanJangCnt").prop("disabled", false);
+			} else {
+				$("#jungGwanJangItem").prop("disabled", true);
+				$("#jungGwanJangCnt").prop("disabled", true);
+			}
+		});
+		
+		$("#FootballSchool").on("click", function() {
+			if($("#FootballSchool").is(":checked")){
+				$("#FootballSchoolItem").prop("disabled", false);
+				$("#FootballSchoolCnt").prop("disabled", false);
+				$("#FootballSchoolPM").prop("disabled", false);
+				$("#FootballSchoolAdd").prop("disabled", false);
+			} else {
+				$("#FootballSchoolItem").prop("disabled", true);
+				$("#FootballSchoolCnt").prop("disabled", true);
+				$("#FootballSchoolPM").prop("disabled", true);
+				$("#FootballSchoolAdd").prop("disabled", true);
+			}
+		});
+		
+		$("#Foot").on("click", function() {
+			if($("#Foot").is(":checked")){
+				$("#FootItem").prop("disabled", false);
+				$("#FootCnt").prop("disabled", false);
+				$("#FootPM").prop("disabled", false);
+				$("#FootAdd").prop("disabled", false);
+			} else {
+				$("#FootItem").prop("disabled", true);
+				$("#FootCnt").prop("disabled", true);
+				$("#FootPM").prop("disabled", true);
+				$("#FootAdd").prop("disabled", true);
+			}
+		});			
+
+		$("#reincarnation").on("click", function() {
+			if($("#reincarnation").is(":checked")){
+				$("#reincarnationText").prop("disabled", false);
+				$("#reincarnationItem").prop("disabled", false);
+			} else {
+				$("#reincarnationText").prop("disabled", true);
+				$("#reincarnationItem").prop("disabled", true);
+			}
+		});
+		
+		$("#normalDivision").on("click", function() {
+			if($("#normalDivision").is(":checked")){
+				$("#normalDivisionCnt").prop("disabled", false);
+				$("#normalDivisionText").prop("disabled", false);
+			} else {
+				$("#normalDivisionCnt").prop("disabled", true);
+				$("#normalDivisionText").prop("disabled", true);
+			}
+		});
+		
+		$("#fusionDivision").on("click", function() {
+			if($("#fusionDivision").is(":checked")){
+				$("#fusionDivisionCnt").prop("disabled", false);
+                $("#inputText").prop("disabled", false);
+				$("#fusionDivisionText").prop("readonly", false);
+			} else {
+				$("#fusionDivisionCnt").prop("disabled", true);
+                $("#inputText").prop("disabled", true);
+				$("#fusionDivisionText").prop("disabled", true);
+			}
+		});
+		
+		$("#posTTranig").on("click", function() {
+			if($("#posTTranig").is(":checked")){
+				$("#posTTranigItem").prop("disabled", false);
+				$("#posTTranigAdd").prop("disabled", false);
+			} else {
+				$("#posTTranigItem").prop("disabled", true);
+				$("#posTTranigAdd").prop("disabled", true);
+			}
+		});
+		
+		$("#singleTranig").on("click", function() {
+			if($("#singleTranig").is(":checked")){
+				$("#singleTranigItem").prop("disabled", false);
+				$("#singleHardTranigItem").prop("disabled", false);
+				$("#singleHTranigAdd").prop("disabled", false);
+				$("#singleTranigAdd").prop("disabled", false);
+			} else {
+				$("#singleTranigItem").prop("disabled", true);
+				$("#singleHardTranigItem").prop("disabled", true);
+				$("#singleHTranigAdd").prop("disabled", true);
+				$("#singleTranigAdd").prop("disabled", true);
+			}
+		});
+		
+		$("#skillbook").on("click", function() {
+			if($("#skillbook").is(":checked")){
+				$("#DelSkillbookItem").prop("disabled", false);
+				$("#AddSkillbookItem").prop("disabled", false);
+				$("#DelskillbookAdd").prop("disabled", false);
+				$("#AddSkillbookAdd").prop("disabled", false);
+			} else {
+				$("#DelSkillbookItem").prop("disabled", true);
+				$("#AddSkillbookItem").prop("disabled", true);
+				$("#DelskillbookAdd").prop("disabled", true);
+				$("#AddSkillbookAdd").prop("disabled", true);
+			}
+		});
+		
+		$("#playerframe").on("click", function() {
+			if($("#playerframe").is(":checked")){
+				$("#playerheight").prop("disabled", false);
+				$("#playerweight").prop("disabled", false);
+				$("#playerframeAdd").prop("disabled", false);
+			} else {
+				$("#playerheight").prop("disabled", true);
+				$("#playerweight").prop("disabled", true);
+				$("#playerframeAdd").prop("disabled", true);
+			}
+		});
+		
+		$("#playername").on("click", function() {
+			if($("#playername").is(":checked")){
+				$("#playernameItem").prop("disabled", false);
+				$("#playernameAdd").prop("disabled", false);
+			} else {
+				$("#playernameItem").prop("disabled", true);
+				$("#playernameAdd").prop("disabled", true);
+			}
+		});
+		
+		$("#beauty").on("click", function() {
+			if($("#beauty").is(":checked")){
+				$("#beautySkin").prop("disabled", false);
+				$("#beautyHair").prop("disabled", false);
+				$("#beautyAdd").prop("disabled", false);
+				<!-- $("#beautyText").prop("disabled", false); -->
+			} else {
+				$("#beautySkin").prop("disabled", true);
+				$("#beautyHair").prop("disabled", true);
+				$("#beautyAdd").prop("disabled", true);
+				<!-- $("#beautyText").prop("disabled", true); -->
+			}
+		});
+		
+		$("#metamon").on("click", function() {
+			if($("#metamon").is(":checked")){
+				$("#metamoninputText").prop("disabled", false);
+				$("#metamonItemFigure").prop("disabled", false);
+				$("#metamonAdd").prop("disabled", false);
+				$("#metamonFootL").prop("disabled", false);
+				$("#metamonFootR").prop("disabled", false);
+				$("#metamonFootAdd").prop("disabled", false);
+			} else {
+				$("#metamoninputText").prop("disabled", true);
+				$("#metamonItemFigure").prop("disabled", true);
+				$("#metamonAdd").prop("disabled", true);
+				$("#metamonFootL").prop("disabled", true);
+				$("#metamonFootR").prop("disabled", true);
+				$("#metamonFootAdd").prop("disabled", true);
+			}
+		});
+		
+		$("#spmetamon").on("click", function() {
+			if($("#spmetamon").is(":checked")){
+				$("#spmetamoninputText").prop("disabled", false);
+				$("#spmetamonItemFigure").prop("disabled", false);
+				$("#spmetamonAdd").prop("disabled", false);
+				$("#spmetamonFootL").prop("disabled", false);
+				$("#spmetamonFootR").prop("disabled", false);
+				$("#spmetamonFootAdd").prop("disabled", false);
+			} else {
+				$("#spmetamoninputText").prop("disabled", true);
+				$("#spmetamonItemFigure").prop("disabled", true);
+				$("#spmetamonAdd").prop("disabled", true);
+				$("#spmetamonFootL").prop("disabled", true);
+				$("#spmetamonFootR").prop("disabled", true);
+				$("#spmetamonFootAdd").prop("disabled", true);
+			}
+		});
+		
+		$("#snss").on("click", function() {
+			if($("#snss").is(":checked")){
+				$("#snsAdd").prop("disabled", false);
+				$("#snsItem").prop("disabled", false);
+				<!-- $("#snsText").prop("disabled", false); -->
+			} else {
+				$("#snsAdd").prop("disabled", true);
+				$("#snsItem").prop("disabled", true);
+				<!-- $("#snsText").prop("disabled", true); -->
+			}
+		});
+
+		$("#gemble").on("click", function() {
+			if($("#gemble").is(":checked")){
+				$("#gembleCnt").prop("disabled", false);
+			} else {
+				$("#gembleCnt").prop("disabled", false);
+			}
+		});		
+		
+		$("#Arenewal").on("click", function(){
+			if($("#Arenewal").is(":checked")){
+				$("#ArenewalAdd").prop("disabled", false);
+			} else {
+				$("#ArenewalAdd").prop("disabled", true);
+			}
+		})
+		
+
+		$("#tutoringAdd").on("click", function() {
+			tutoringCount += 1;
+            if(!storeBuyCountCheck()) {
+            	tutoringCount -= 1;
+                return false;
+            }
+			
+			if(tutoringCount>=1){
+				$("#tutoringAdd").prop("disabled", true);
+			}
+
+			var tutoringText = $("#tutoringText").val() + " ";
+			tutoringText += $("#tutorItem").val() + $("#tutoringMinusPlus").val() + "1"
+			$("#tutoringText").val(tutoringText);
+					
+			resultSetting();
+		});
+		
+		$("#endorphinAdd").on("click", function() {
+			endorphinCount += Number($("#endorphinCnt").val());
+            if(!storeBuyCountCheck()) {
+                endorphinCount -= Number($("#endorphinCnt").val());
+                return false;
+            }
+
+			var endorphinText = $("#endorphinText").val() + " ";
+			endorphinText += $("#endorphinItem").val() + "+" + $("#endorphinCnt").val();
+			$("#endorphinText").val(endorphinText);
+					
+			resultSetting();
+		});
+
+		$("#setpieceAdd").on("click", function() {
+            setpieceCount += Number($("#setpieceCnt").val());
+            if(!storeBuyCountCheck()) {
+                setpieceCount -= Number($("#setpieceCnt").val());
+                return false;
+            }
+
+			var setpieceText = $("#setpieceText").val() + " ";
+			setpieceText += $("#setpieceItem").val() + "+" + $("#setpieceCnt").val();
+			$("#setpieceText").val(setpieceText);
+					
+			resultSetting();
+		});
+		
+		
+		$("#FootballSchoolAdd").on("click", function() {
+            footballschoolCount += Number($("#FootballSchoolCnt").val());
+            if(!storeBuyCountCheck()) {
+            	footballschoolCount -= Number($("#FootballSchoolCnt").val());
+                return false;
+            }
+
+			var FootballSchoolText = $("#FootballSchoolText").val() + " ";
+			FootballSchoolText += $("#FootballSchoolItem").val() + $("#FootballSchoolPM").val() + $("#FootballSchoolCnt").val();
+			$("#FootballSchoolText").val(FootballSchoolText);
+					
+			resultSetting();
+		});
+		
+		$("#FootAdd").on("click", function() {
+            footCount += Number($("#FootCnt").val());
+            if(!storeBuyCountCheck()) {
+            	footCount -= Number($("#FootCnt").val());
+                return false;
+            }
+
+			var FootText = $("#FootText").val() + " ";
+			FootText += $("#FootItem").val() + $("#FootPM").val() + $("#FootCnt").val();
+			$("#FootText").val(FootText);
+					
+			resultSetting();
+		});		
+		
+		$("#gembleAdd").on("click", function() {
+            gembleCount += Number($("#gembleCnt").val());
+            if(!storeBuyCountCheck()) {
+            	gembleCount -= Number($("#gembleCnt").val());
+                return false;
+            }
+			resultSetting();
+		});		
+		
+		$("#posTTranigAdd").on("click", function() {
+            positionCount += 1;
+            if(!storeBuyCountCheck()) {
+                positionCount -= 1;
+                return false;
+            }
+
+			var psitionText = $("#psTText").val() + " ";
+			psitionText += $("#posTTranigItem").val();
+			$("#psTText").val(psitionText);
+					
+			resultSetting();
+		});
+		
+		$("#singleTranigAdd").on("click", function() {
+            singleTCount += 1;
+            if(!storeBuyCountCheck()) {
+                singleTCount -= 1;
+                return false;
+            }
+			
+			
+			var singleText = $("#singleTraningText").val() + " ";
+			singleText += $("#singleTranigItem").val();
+			$("#singleTraningText").val(singleText);
+					
+			resultSetting();
+		});
+		
+		$("#singleHTranigAdd").on("click", function() {
+            singleTCount += 1;
+            if(!storeBuyCountCheck()) {
+                singleTCount -= 1;
+                return false;
+            }
+			
+			
+			var singleaText = $("#singleTraningText").val() + " ";
+			singleaText += $("#singleHardTranigItem").val();
+			$("#singleTraningText").val(singleaText);
+					
+			resultSetting();
+		});
+		
+		$("#DelskillbookAdd").on("click", function() {
+            skillbookCount += 1;
+            if(!storeBuyCountCheck()) {
+                skillbookCount -= 1;
+                return false;
+            }
+			
+			
+			var DskillText = $("#SkBookText").val() + " ";
+			DskillText += $("#DelSkillbookItem").val() + " 삭제,";
+			$("#SkBookText").val(DskillText);
+					
+			resultSetting();
+		});
+		
+		$("#AddSkillbookAdd").on("click", function() {
+            skillbookCount += 1;
+            if(!storeBuyCountCheck()) {
+                skillbookCount -= 1;
+                return false;
+            }
+			
+			
+			var AskillText = $("#SkBookText").val() + " ";
+			AskillText += $("#AddSkillbookItem").val() + " 추가,";
+			$("#SkBookText").val(AskillText);
+					
+			resultSetting();
+		});
+		
+		$("#playerframeAdd").on("click", function() {
+            playerframeCount += 1;
+            if(!storeBuyCountCheck()) {
+                playerframeCount -= 1;
+                return false;
+            }
+			
+			playerframeText = null;
+			
+			var playerframeTText = $("#playerframeText").val() + " ";
+			playerframeTText += "키: "+$("#playerheight").val() + " 몸무게: "+$("#playerweight").val();
+			$("#playerframeText").val(playerframeTText);
+					
+			resultSetting();
+		});
+		
+		$("#playernameAdd").on("click", function() {
+            playernameCount += 1;
+            if(!storeBuyCountCheck()) {
+                playerframeCount -= 1;
+                return false;
+            }
+			
+			if(playernameCount>=1){
+				$("#playernameAdd").prop("disabled", true);
+			}
+					
+			var plnameText = $("#playernameText").val() + " ";
+			plnameText += $("#playernameItem").val();
+			$("#playernameText").val(plnameText);
+					
+			resultSetting();
+		});
+		
+		$("#beautyAdd").on("click", function() {
+			beautyCount += 1;
+            if(!storeBuyCountCheck()) {
+                beautyCount -= 1;
+                return false;
+            }
+			
+			if(beautyCount>=1){
+				$("#beautyAdd").prop("disabled", true);
+			}
+			
+			var btText = $("#beautyText").val() + " ";
+			btText += "피부색: "+$("#beautySkin").val()+"머리색: "+$("#beautyHair").val();
+			$("#beautyText").val(btText);
+			
+			resultSetting();
+		});
+		
+		$("#metamonAdd").on("click", function() {
+			if(!metamoninputText){
+				metamonCount += 1;
+				if(metamonCount>=5){
+					metamonFCount=1;
+					$("#metamonAdd").prop("disabled", true);
+				}
+					
+				var metaText = $("#metamonText").val() + " ";
+				metaText += $("#metamoninputText").val() + $("#metamonItemFigure").val();
+				$("#metamonText").val(metaText);
+				if(!storeBuyCountCheck()) {
+                metamonFCount -= 1;
+                return false;
+            }
+			}
+            
+					
+			resultSetting();
+		});
+		
+		
+		$("#metamonFootAdd").on("click", function() {
+			if(metamonFootL>=4 && metamonFootR>=4){
+				metamonFCount = 1;
+				metamonFTCount += 1;
+				var metaFText = $("#metamonText").val() + " ";
+				metaFText += "주발변경: 왼발"+$("#metamonFootL").val() + " 오른발" + $("#metamonFootR").val();
+				$("#metamonText").val(metaFText);
+				if(metamonFTCount>=1){
+					$("#metamonFootAdd").prop("disabled", true);
+				}			
+				if(!storeBuyCountCheck()) {
+					metamonFCount -= 1;
+					return false;
+				}
+			}
+					
+			resultSetting();
+		});
+		
+		$("#spmetamonAdd").on("click", function() {
+			spmetamonCount += 1;
+				if(spmetamonCount>=5){
+					spmetamonFCount=1;
+					$("#spmetamonAdd").prop("disabled", true);
+				}
+					
+				var spmetaText = $("#spmetamonText").val() + " ";
+				spmetaText += $("#spmetamoninputText").val();
+				$("#spmetamonText").val(spmetaText);
+				if(!storeBuyCountCheck()) {
+                spmetamonFCount -= 1;
+                return false;
+            }
+            
+					
+			resultSetting();
+		});
+		
+		
+		$("#spmetamonFootAdd").on("click", function() {
+			if(spmetamonFootL>=4 && spmetamonFootR>=4){
+				spmetamonFCount = 1;
+				spmetamonFTCount += 1;
+				var spmetaFText = $("#spmetamonText").val() + " ";
+				spmetaFText += "주발변경: 왼발"+$("#spmetamonFootL").val() + " 오른발" + $("#spmetamonFootR").val();
+				$("#spmetamonText").val(spmetaFText);
+				if(spmetamonFTCount>=1){
+					$("#spmetamonFootAdd").prop("disabled", true);
+				}			
+				if(!storeBuyCountCheck()) {
+					spmetamonFCount -= 1;
+					return false;
+				}
+			}
+					
+			resultSetting();
+		});
+		
+		$("#snsAdd").on("click", function() {
+            snsCount += 1;
+            if(!storeBuyCountCheck()) {
+                snsCount -= 1;
+                return false;
+            }
+			
+					
+			var snsAText = $("#snsText").val() + " ";
+			snsAText += $("#snsItem").val();
+			$("#snsText").val(snsAText);
+					
+			resultSetting();
+		});
+		
+		$("#ArenewalAdd").on("click", function() {
+            ArenewalCount += 1;
+            if(!storeBuyCountCheck()) {
+                ArenewalCount -= 1;
+                return false;
+            }
+			if(ArenewalCount>=1){
+					$("#ArenewalAdd").prop("disabled", true);
+			}	
+			
+					
+			var renAText = $("#ArenewalText").val() + " ";
+			renAText += $("#name").val();
+			$("#ArenewalText").val(renAText);
+					
+			resultSetting();
+		});
+		
+		$("#tutoringReset").on("click", function() {
+			$("#tutoringText").val("");
+			$("#tutoring").prop("checked",false);
+			$("#tutorItem").prop("disabled", true);
+			$("#tutoringMinusPlus").prop("disabled", true);
+			$("#tutoringCnt").prop("disabled", true);
+			
+			tutoringCount = 0;
+			resultSetting();
+		});
+		
+		$("#endorphinReset").on("click", function() {
+			$("#endorphin").prop("checked",false);
+			$("#endorphinAdd").prop("disabled", true);
+			$("#endorphinItem").prop("disabled", true);
+			$("#endorphinText").val("");
+			endorphinCount = 0;
+			resultSetting();
+		});
+
+		$("#setpieceReset").on("click", function() {
+			$("#setpiece").prop("checked",false);
+			$("#setpieceAdd").prop("disabled",false);
+			$("#setpieceItem").prop("disabled",false);
+			$("#setpieceText").val("");
+			
+			setpieceCount = 0;
+			resultSetting();
+		});
+		
+		$("#FootballSchoolReset").on("click", function() {
+			$("#FootballSchoolText").val("");
+			footballschoolCount = 0;
+			resultSetting();
+		});
+		$("#FootReset").on("click", function() {
+			$("#FootText").val("");
+			$("#Foot").prop("checked",false);
+			$("#FootAdd").prop("disabled",false);
+			footCount = 0;
+			resultSetting();
+		});
+		
+		$("#GambleReset").on("click", function() {
+			$("#gembleCnt").val("0");
+			//$("#gemble").prop("checked",false);
+			gembleCount = 0;
+			resultSetting();
+		});		
+		
+		$("#posTTranigReset").on("click", function() {
+			$("#psTText").val("");
+			$("#posTTranig").prop("checked",false);
+			$("#posTTranigAdd").prop("disabled",false);
+			$("#posTTranigItem").prop("disabled",false);
+			positionCount = 0;
+			resultSetting();
+		});
+		
+		$("#singleTranigReset").on("click", function() {
+			$("#singleTraningText").val("");
+			$("#singleTranig").prop("checked",false);
+			$("#singleHTranigAdd").prop("disabled",false);
+			$("#singleHardTranigItem").prop("disabled",false);
+			$("#singleTranigAdd").prop("disabled",false);
+			$("#singleTranigItem").prop("disabled",false);
+			singleTCount = 0;
+			resultSetting();
+		});
+
+		$("#SkillbookReset").on("click", function() {
+			$("#SkBookText").val("");
+			$("#skillbook").prop("checked",false);
+			$("#DelskillbookAdd").prop("disabled",false);
+			$("#DelSkillbookItem").prop("disabled",false);
+			$("#AddSkillbookAdd").prop("disabled",false);
+			$("#AddSkillbookItem").prop("disabled",false);
+			skillbookCount = 0;
+			resultSetting();
+		});
+		
+		$("#playerframeReset").on("click", function() {
+			$("#playerframeText").val("");
+			$("#playerframe").prop("checked",false);
+			$("#playerheight").prop("disabled", true);
+			$("#playerweight").prop("disabled", true);
+			$("#playerframeAdd").prop("disabled", true);
+			playerframeCount = 0;
+			resultSetting();
+		});
+		
+		$("#playernameReset").on("click", function() {
+			$("#playernameText").val("");
+			$("#playername").prop("checked",false);
+			$("#playernameItem").prop("disabled", true).val("");
+			$("#playernameAdd").prop("disabled", false);
+			playernameCount = 0;
+			resultSetting();
+		});
+		
+		$("#beautyReset").on("click", function() {
+			$("#beautyText").prop("disabled", true).val("");
+			$("#beauty").prop("checked",false);
+			$("#beautySkin").prop("disabled", true).val("0");
+			$("#beautyHair").prop("disabled", true).val("");
+			$("#beautyAdd").prop("disabled", true);
+			beautyCount = 0;
+			resultSetting();
+		});
+		
+		$("#metamonReset").on("click", function() {
+			$("#metamonText").val("");
+			$("#metamon").prop("checked",false);
+			$("#metamoninputText").prop("disabled", true).val("");
+			$("#metamonItemFigure").prop("disabled", true).val("3");
+			$("#metamonAdd").prop("disabled", true);
+			$("#metamonFootL").prop("disabled", true).val("0");
+			$("#metamonFootR").prop("disabled", true).val("0");
+			$("#metamonFootAdd").prop("disabled", true);
+			metamonFCount = 0;
+			metamonCount = 0;
+			metamonFTCount = 0;
+			resultSetting();
+		});
+		
+		$("#spmetamonReset").on("click", function() {
+			$("#spmetamonText").val("");
+			$("#spmetamon").prop("checked",false);
+			$("#spmetamoninputText").prop("disabled", true).val("");
+			$("#spmetamonItemFigure").prop("disabled", true).val("3");
+			$("#spmetamonAdd").prop("disabled", true);
+			$("#spmetamonFootL").prop("disabled", true).val("0");
+			$("#spmetamonFootR").prop("disabled", true).val("0");
+			$("#spmetamonFootAdd").prop("disabled", true);
+			spmetamonFCount = 0;
+			spmetamonCount = 0;
+			spmetamonFTCount = 0;
+			resultSetting();
+		});
+		
+		$("#snsReset").on("click", function() {
+			$("#snsText").prop("disabled", true).val("");
+			$("#snss").prop("checked",false);
+			$("#snsItem").prop("disabled", true).val("0");
+			$("#snsAdd").prop("disabled", true);
+			snsCount = 0;
+			resultSetting();
+		});
+		
+		$("#tutorItem").change(function(){
+            if(!storeBuyCountCheck()) {
+                return false;
+            }
+			resultSetting();
+		});
+
+		$("select").on("change, focusout, focuson", function() {
+            if(!storeBuyCountCheck()) {
+                return false;
+            }
+			resultSetting();
+		});
+		
+		$("input").on("change, keyup", function() {
+            if(!storeBuyCountCheck()) {
+                return false;
+            }
+			resultSetting();
+		});
+		
+		$("#btnPopup").on("click", function() {
+
+			winPop("https://cktnswn010.github.io/fmn/fmn_util/img/Position_CA.jpg", {name:'능력치',width:705,height:757}); return false;
+		});
+
+		$("#btnStat").on("click", function() {
+			winPop("https://www.flayus.com/fmn/category/6781651", {name:'능력치탭',width:1024,height:875}); return false;
+		})
+		
+		$("#copy").on("click", function() {
+			$("#result").select();
+			document.execCommand('copy');
+		});
+
+		function resultSetting() {
+			var resultText = "";
+			var totalPay = 0;
+
+			resultText += $("#name").val() + "\n";
+			
+			if($("#steroid").is(":checked")) {
+				resultText += "스테로이드 어빌+2 1000츄르\n";
+				totalPay += 1000;
+			}
+			
+			if($("#tutoring").is(":checked")) {
+				//resultText += "튜터링 " + $("#tutorItem").val() + $("#tutoringMinusPlus").val() + "2 1000츄르\n";
+				resultText += "튜터링 " + tutoringCount + $("#tutoringText").val() + " " + (Number(tutoringCount) * 1000)+ "츄르\n";
+				totalPay += (Number(tutoringCount) * 1000);
+			} 
+
+			if($("#endorphin").is(":checked")) {
+				resultText += "엔돌핀" + endorphinCount + $("#endorphinText").val() + " " + (Number(endorphinCount) * 400) + "츄르\n";
+				totalPay += Number(endorphinCount) * 400;
+			}
+
+			if($("#setpiece").is(":checked")) {
+				resultText += "세트피스" + setpieceCount + $("#setpieceText").val() + " " + (Number(setpieceCount) * 400) + "츄르\n";
+				totalPay += Number(setpieceCount) * 400;
+			}
+			
+			if($("#FootballSchool").is(":checked")) {
+				resultText += "마빈박사의 실험실" + footballschoolCount + $("#FootballSchoolText").val() + " " + (Number(footballschoolCount) * 400) + "츄르\n";
+				totalPay += Number(footballschoolCount) * 400;
+			}
+			
+			if($("#Foot").is(":checked")) {
+				resultText += "약발훈련" + footCount + $("#FootText").val() + " " + (Number(footCount) * 400) + "츄르\n";
+				totalPay += Number(footCount) * 400;
+			}			
+
+			if($("#jungGwanJang").is(":checked")) {
+				resultText += "정관장" + $("#jungGwanJangCnt").val() + " 부상빈도" + $("#jungGwanJangItem").val() + $("#jungGwanJangCnt").val() + " " + (Number($("#jungGwanJangCnt").val()) * 400) + "p \n";
+				totalPay += Number($("#jungGwanJangCnt").val()) * 400;
+			}
+ 
+			if($("#reincarnation").is(":checked")) {
+				
+				resultText += "환생";
+				resultText += " 어빌-3 포텐+5 통분3 " + $("#reincarnationText").val() + " 1000츄르\n";
+				totalPay += 1000; 
+				
+			} 
+			if($("#gemble").is(":checked")) {
+				resultText += "도박" + gembleCount + " " + (Number(gembleCount) * 700) + "츄르\n";
+				totalPay += Number(gembleCount) * 700;
+			}				
+				
+			if($("#fusionDivision").is(":checked")) {
+				resultText += "통합분배" + $("#fusionDivisionCnt").val() + " " + $("#fusionDivisionText").val() + " " + (Number($("#fusionDivisionCnt").val()) * 200) + "츄르\n\n";
+				totalPay += Number($("#fusionDivisionCnt").val()) * 200;
+			}
+			
+			if($("#posTTranig").is(":checked")) {
+				resultText += "포지션 훈련" + positionCount + $("#psTText").val() + " " + (Number(positionCount) * 400) + "츄르\n";
+				totalPay += Number(positionCount) * 400;
+			}
+			
+			if($("#singleTranig").is(":checked")) {
+				resultText += "개인 훈련" + singleTCount + $("#singleTraningText").val() + " " + (Number(singleTCount) * 800) + "츄르\n";
+				totalPay += Number(singleTCount) * 800;
+			}
+			
+			if($("#skillbook").is(":checked")) {
+				resultText += "스킬북" + skillbookCount + $("#SkBookText").val() + " " + (Number(skillbookCount) * 400) + "츄르\n";
+				totalPay += Number(skillbookCount) * 400;
+			}
+			
+			if($("#playerframe").is(":checked")) {
+				resultText += "성장호르몬" + playerframeCount + $("#playerframeText").val() + " " + (Number(playerframeCount) * 800) + "츄르\n";
+				totalPay += Number(playerframeCount) * 800;
+			}
+			
+			if($("#playername").is(":checked")) {
+				resultText += "이름 변경" + playernameCount + $("#playernameText").val() + " " + (Number(playernameCount) * 800) + "츄르\n";
+				totalPay += Number(playernameCount) * 800;
+			}
+			
+			if($("#beauty").is(":checked")) {
+				resultText += "미용" + beautyCount + $("#beautyText").val() + " " + (Number(beautyCount) * 600) + "츄르\n";
+				totalPay += Number(beautyCount) * 600;
+			}
+			
+			if($("#metamon").is(":checked")) {
+				resultText += "메타몽" + metamonFCount + $("#metamonText").val() + " " + (Number(metamonFCount) * 3000) + "츄르\n";
+				totalPay += Number(metamonFCount) * 3000;
+			}
+			
+			if($("#spmetamon").is(":checked")) {
+				resultText += "슈퍼메타몽" + spmetamonFCount + $("#spmetamonText").val() + " " + (Number(spmetamonFCount) * 5000) + "츄르\n";
+				totalPay += Number(spmetamonFCount) * 5000;
+			}
+			
+			if($("#snss").is(":checked")) {
+				resultText += "SNS" + snsCount + $("#snsText").val() + " " + (Number(snsCount) * 1000) + "츄르\n";
+				totalPay += Number(snsCount) * 1000;
+			}
+			
+			if($("#Arenewal").is(":checked")) {
+				resultText += "재계약: " + $("#ArenewalText").val()+" 신청" + (Number(ArenewalCount) * 1000) + "츄르\n";;
+				totalPay += 1000;
+			}
+			
+			resultText += "총 " + totalPay + "츄르"
+
+			$("#result").text(resultText);
+		}
+		
+		function storeBuyCountCheck() {
+		
+            var countCheck = true;
+			var playerBuyCount = 0;
+			
+			if($("#steroid").is(":checked")) {
+				playerBuyCount++;
+			}
+			if($("#tutoring").is(":checked")) {
+				playerBuyCount += Number(tutoringCount);
+			}
+			if($("#endorphin").is(":checked")) {
+				playerBuyCount += Number(endorphinCount);
+			}
+			if($("#setpiece").is(":checked")) {
+				playerBuyCount += Number(setpieceCount);
+			}
+			if($("#FootballSchool").is(":checked")) {
+				playerBuyCount += Number(footballschoolCount);
+			}
+			if($("#Foot").is(":checked")) {
+				playerBuyCount += Number(footCount);
+			}
+			if($("#gemble").is(":checked")) {
+				playerBuyCount += Number(gembleCount);
+			}
+			if($("#jungGwanJang").is(":checked")) {
+				playerBuyCount += Number($("#jungGwanJangCnt").val());
+			}
+			if($("#reincarnation").is(":checked")) {
+				playerBuyCount++;
+			}
+			if($("#normalDivision").is(":checked")) {
+				playerBuyCount += Number($("#normalDivisionCnt").val());
+			}
+			if($("#fusionDivision").is(":checked")) {
+				playerBuyCount += Number($("#fusionDivisionCnt").val());
+			}
+
+			if(playerBuyCount > $("#maximum").val()) {
+				$("#result").text("개인상점을 너무 많이해서 초기화 시켰습니다. 갯수 조절 다시 해보세요.\n개인상점은 총 7개 구매가 가능합니다.");
+                countCheck = false;
+			}
+			
+			function tutorItemReSet() {
+				$("#tutoringText").val("");
+			$("#tutoring").prop("checked",false);
+			$("#tutorItem").prop("disabled", true).val();
+			$("#tutoringMinusPlus").prop("disabled", true).val();
+			$("#tutoringCnt").prop("disabled", true).val();
+			$('#tutorItem option:eq(0)').attr('selected', 'selected');
+			$("#tutoringAdd").prop("disabled", true);
+			
+			
+			tutoringCount = 0;
+			resultSetting();
+			}
+			
+			if(Number(tutoringCount) > 1) {
+				$("#result").text("튜터링을 너무 많이해서 초기화 시켰음. 갯수 조절 다시 해보세요.\n튜터링은 최대 1개 구매가 가능합니다.");
+				tutorItemReSet();
+				
+                countCheck = false;
+			}
+			
+			function playerframeReSetA() {
+				document.getElementById("playerheight").value = '0';
+				document.getElementById("playerweight").value = '0';
+				document.getElementById("playerframeText").value = null;
+			}
+			
+			if(Number(playerframeCount) > 1) {
+				playerframeReSetA();
+				$("#result").text("성장호르몬은 1회만 가능합니다.");
+				$("#playerframeText").val("");
+				$("#playerframe").prop("checked",false);
+				$("#playerheight").prop("disabled", true);
+				$("playerweight").prop("disabled", true);
+				playerframeCount = 0;
+				resultSetting();
+			}
+			
+            return countCheck;
+		}
+		 
+		
+		function winPop(url, opts) {
+   
+		   var popupName = opts.name || 'popup';
+		   var options = '';
+		   options += 'width=' + (opts.width ? opts.width : 200) + ', height=' + (opts.height ? opts.height : 200);
+		   options += opts.left && opts.width ? ', left=' + opts.left : ', left=' + ( (screen.availWidth - opts.width) / 2);
+		   options += opts.top && opts.height ? ', top=' + opts.top : ', top=' + ( (screen.availHeight - opts.height) / 2);
+		   options += opts.scrollbars ? ', scrollbars=' + opts.scrollbars : ', scrollbars=no';
+		   options += opts.resizable ? ', resizable=' + opts.resizable : ', resizable=no';
+		   window.open(url, popupName, options);
+		}
+	</script>
+</html>
