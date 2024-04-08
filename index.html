@@ -1572,6 +1572,16 @@
 			resultSetting();
 		});
 		
+		$("#cassReset").on("click", function() {
+			$("#cassText").val("");
+			$("#cass").prop("checked",false);
+			$("#carrot").prop("disabled", true);
+			$("#sticks").prop("disabled", true);
+			
+			cassCount = 0;
+			resultSetting();
+		});
+		
 		$("#endorphinReset").on("click", function() {
 			$("#endorphin").prop("checked",false);
 			$("#endorphinAdd").prop("disabled", true);
@@ -1842,6 +1852,11 @@
 			if($("#spmetamon").is(":checked")) {
 				resultText += "슈퍼메타몽" + spmetamonFCount + $("#spmetamonText").val() + " " + (Number(spmetamonFCount) * 5000) + "츄르\n";
 				totalPay += Number(spmetamonFCount) * 5000;
+			}
+			
+			if($("#cass").is(":checked")) {
+				resultText += "당근과 채찍" + cassCount + $("#cassText").val() + " " + (Number(cassCount) * 5000) + "츄르\n";
+				totalPay += Number(cassCount) * 5000;
 			}
 			
 			if($("#snss").is(":checked")) {
