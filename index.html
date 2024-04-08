@@ -8,7 +8,7 @@
     <meta name="author" content="">
 	
 	
-	<title>FMN UTIL - 상점 도우미(S26)</title>
+	<title>FMN UTIL - 상점 도우미(S27)</title>
 	
 	
 	
@@ -69,7 +69,7 @@
 				
 				
 				
-				<h1 class="text-center">FMN S26 상점</h1>
+				<h1 class="text-center">FMN S27 상점</h1>
 				<!--  상점 최대 구매 갯수 -->
 		        <input type="hidden" id="maximum" value="7">
 				<button id="btnPopup" class="btn btn-primary btn-sm">어빌가중치 보기</button>
@@ -748,6 +748,22 @@
 							</td>
 						</tr>
 						<tr>
+							<th style="min-width:100px;">당근과 채찍</th>
+							<td class="col-sm-1" style="min-width:70px;">
+								<input type="checkbox" id="cass" value="Y"><label for="cass">사용</label>
+							</td>
+							<td>
+							훈련 칭찬
+							<button id="carrot" disabled>추가</button>
+							훈련 질책
+							<button id="sticks" disabled>변경</button>
+							</td>							
+							<td colspan="2">
+								<input id="cassText" style="width:500px;" disabled>
+								<button id="cassReset">리셋</button>
+							</td>
+						</tr>
+						<tr>
 							<th style="min-width:100px;">SNS</th>
 							<td class="col-sm-1" style="min-width:70px;">
 								<input type="checkbox" id="snss" value="Y"><label for="snss">사용</label>
@@ -806,6 +822,7 @@
 		var beautyCount = 0;
 		var snsCount = 0;
 		var ArenewalCount = 0;
+		var cassCount = 0;
         var minus = true;
         var fusionUseCnt = 1;
         var fusionFinish = false;
@@ -1157,6 +1174,16 @@
 				$("#spmetamonFootAdd").prop("disabled", true);
 			}
 		});
+
+		$("#cass").on("click", function() {
+			if($("#cass").is(":checked")){
+				$("#carrot").prop("disabled", false);
+				$("#sticks").prop("disabled", false);
+			} else {
+				$("#carrot").prop("disabled", true);
+				$("#sticks").prop("disabled", true);
+			}
+		});
 		
 		$("#snss").on("click", function() {
 			if($("#snss").is(":checked")){
@@ -1230,6 +1257,18 @@
 			setpieceText += $("#setpieceItem").val() + "+" + $("#setpieceCnt").val();
 			$("#setpieceText").val(setpieceText);
 					
+			resultSetting();
+		});
+		
+		$("#carrot").on("click", function(){
+			cassCount += Number($("#cassCount").val());
+			
+            if(!storeBuyCountCheck()) {
+                cassCount -= Number($("#cassCount").val());
+                return false;
+            }
+			var cassTEXT =  $("#cassText").val() + " ";
+			cassTEXT += "훈련칭찬";
 			resultSetting();
 		});
 		
