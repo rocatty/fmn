@@ -753,10 +753,10 @@
 								<input type="checkbox" id="cass" value="Y"><label for="cass">사용</label>
 							</td>
 							<td>
-							훈련 칭찬
-							<button id="carrot" disabled>추가</button>
-							훈련 질책
-							<button id="sticks" disabled>변경</button>
+							
+							<button id="carrot" disabled>훈련 칭찬</button>
+							
+							<button id="sticks" disabled>훈련 질책</button>
 							</td>							
 							<td colspan="2">
 								<input id="cassText" style="width:500px;" disabled>
@@ -1261,10 +1261,10 @@
 		});
 		
 		$("#carrot").on("click", function(){
-			cassCount += Number($("#cassCount").val());
+			cassCount += 1;
 			
             if(!storeBuyCountCheck()) {
-                cassCount -= Number($("#cassCount").val());
+                cassCount -= 1;
                 return false;
             }
 			var carrotText =  $("#cassText").val() + " ";
@@ -1275,10 +1275,10 @@
 		});
 		
 		$("#sticks").on("click", function(){
-			cassCount += Number($("#cassCount").val());
+			cassCount += 1;
 			
             if(!storeBuyCountCheck()) {
-                cassCount -= Number($("#cassCount").val());
+                cassCount -= 1;
                 return false;
             }
 			var sticksText =  $("#cassText").val() + " ";
