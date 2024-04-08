@@ -1272,6 +1272,18 @@
 			resultSetting();
 		});
 		
+		$("#sticks").on("click", function(){
+			cassCount += Number($("#cassCount").val());
+			
+            if(!storeBuyCountCheck()) {
+                cassCount -= Number($("#cassCount").val());
+                return false;
+            }
+			var cassText =  $("#cassText").val() + " ";
+			cassText += "훈련질책";
+			resultSetting();
+		});
+		
 		
 		$("#FootballSchoolAdd").on("click", function() {
             footballschoolCount += Number($("#FootballSchoolCnt").val());
