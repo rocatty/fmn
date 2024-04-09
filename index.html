@@ -880,9 +880,9 @@
                             "펀칭(빈도)(GK전용)",
                             "페널티 박스 장악력(GK전용)"
                         ];
-		$("#steroid").on("change", function()){
-			resultSetting();
-		};
+		$("#steroid").autocomplete({
+            source: availableTags
+        });
 
         $( "#inputText" ).autocomplete({
             source: availableTags
