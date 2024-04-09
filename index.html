@@ -961,11 +961,6 @@
             }
         });
 		
-		$("#steroid").on("click", function() {
-			if($("#steroid").is(":checked")){
-				resultSetting();
-			}
-		});
 
 		$("#tutoring").on("click", function() {
 			if($("#tutoring").is(":checked")){
@@ -1763,7 +1758,7 @@
 
 			resultText += $("#name").val() + "\n";
 			
-			if($("#steroid").is(":checked")) {
+			if($("#steroid").is(":click")) {
 				resultText += "스테로이드 어빌+2 500츄르\n";
 				totalPay += 500;
 			}
