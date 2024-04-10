@@ -958,7 +958,10 @@
 		}
             }
         });
-		
+
+		$("steroid).on("change", function()	{
+			resultSetting();
+		});
 
 		$("#tutoring").on("click", function() {
 			if($("#tutoring").is(":checked")){
