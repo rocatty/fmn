@@ -901,7 +901,7 @@
             source: availableTags
 		});
 
-        $( "#inputText" ).on("keyup", function(e) {
+        <!--$( "#inputText" ).on("keyup", function(e) {
             if(e.keyCode == 13) {
 		if(fusionFinish) {
 			return;
@@ -964,7 +964,10 @@
 			$("#inputText").val("");
 		}
             }
-        });
+        });-->
+		
+		
+		
 
 		$("#steroid").on("change", function()	{
 			resultSetting();
@@ -1072,10 +1075,16 @@
 				$("#fusionDivisionCnt").prop("disabled", false);
                 $("#inputText").prop("disabled", false);
 				$("#fusionDivisionText").prop("readonly", false);
+                $("#tbCnt").prop("disabled", false);
+				$("#tbplus").prop("readonly", false);
+				$("#tbuse").prop("readonly", false);
 			} else {
 				$("#fusionDivisionCnt").prop("disabled", true);
                 $("#inputText").prop("disabled", true);
 				$("#fusionDivisionText").prop("disabled", true);
+                $("#tbCnt").prop("disabled", true);
+				$("#tbplus").prop("disabled", true);
+				$("#tbuse").prop("disabled", true);
 			}
 		});
 		
