@@ -281,6 +281,7 @@
 							</td>
 							<td colspan="2">
 								<input type="text" id="fusionDivisionText" style="width:500px;" disabled>
+								<button id="tbReset">리셋</button>
 							</td>
 						</tr>
 						<!-- <tr>
@@ -1074,17 +1075,19 @@
 			if($("#fusionDivision").is(":checked")){
 				$("#fusionDivisionCnt").prop("disabled", false);
                 $("#inputText").prop("disabled", false);
-				$("#fusionDivisionText").prop("readonly", false);
+				$("#fusionDivisionText").prop("disabled", false);
                 $("#tbCnt").prop("disabled", false);
-				$("#tbplus").prop("readonly", false);
-				$("#tbuse").prop("readonly", false);
+				$("#tbplmi").prop("disabled", false);
+				$("#tbuse").prop("disabled", false);
+				$("#tbReset").prop("disabled", false);
 			} else {
 				$("#fusionDivisionCnt").prop("disabled", true);
                 $("#inputText").prop("disabled", true);
 				$("#fusionDivisionText").prop("disabled", true);
                 $("#tbCnt").prop("disabled", true);
-				$("#tbplus").prop("disabled", true);
+				$("#tbplmi").prop("disabled", true);
 				$("#tbuse").prop("disabled", true);
+				$("#tbReset").prop("disabled", true);
 			}
 		});
 		
