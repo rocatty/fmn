@@ -8,7 +8,7 @@
     <meta name="author" content="">
 	
 	
-	<title>FMN UTIL - 상점 도우미(S26)</title>
+	<title>FMN UTIL - 상점 도우미(S27)</title>
 	
 	
 	
@@ -69,7 +69,7 @@
 				
 				
 				
-				<h1 class="text-center">FMN S26 상점</h1>
+				<h1 class="text-center">FMN S27 상점</h1>
 				<!--  상점 최대 구매 갯수 -->
 		        <input type="hidden" id="maximum" value="7">
 				<button id="btnPopup" class="btn btn-primary btn-sm">어빌가중치 보기</button>
@@ -149,9 +149,7 @@
 									<option value="적극성">적극성</option>
 									<option value="천재성">천재성</option>
 									<option value="팀워크">팀워크</option>
-									<option value="균형감각">균형감각</option>
-									<option value="활동량">활동량</option>
-									<option value="타고난체력">타고난체력</option>
+									<option value="타고난 체력">타고난 체력</option>
 									<option value="기행">(GK전용) 기행</option>
 									<option value="돌진">(GK전용) 돌진</option>
 									<option value="펀칭">(GK전용) 펀칭</option>
@@ -164,18 +162,12 @@
 								<button id="endorphinReset">리셋</button>
 							</td>
 						</tr>
-        
 						<tr>
 							<th>세트피스</th>
 							<td>
-								 <a href="#setpiecelayer" class="btn-example"><input type="checkbox" id="setpiece" value="Y"><label for="setpiece">사용</label></a>
+								<input type="checkbox" id="setpiece" value="Y"><label for="setpiece">사용</label>
 							</td>
-               <div id="setpiecelayer" class="pop-layer">
-    <div class="pop-container">
-        <div class="pop-conts">
-            <!--content //-->
 							<td>
-               
 								<select id="setpieceItem" style="min-width:120px;" disabled>
 									<option value="">--선택--</option>
 									<option value="코너킥">코너킥</option>
@@ -183,22 +175,9 @@
 									<option value="PK">PK</option>
 									<option value="장거리스로인">장거리스로인</option>
 								</select>
-                
-								<input id="setpieceText" disabled>
 								<input type="number" id="setpieceCnt" max="9" min="0" value="0" style="min-width:70px; max-width:150px;" disabled>
 								<button id="setpieceAdd" disabled>추가</button>
-                <div>
-								<input id="setpieceText" disabled></div>
 							</td>
-          
-
-            <div class="btn-r">
-                <a href="#" class="btn-layerClose">확인</a>
-            </div>
-            <!--// content-->
-        </div>
-    </div>
-</div>
 							<td colspan="2">
 								<input id="setpieceText" disabled>
 								<button id="setpieceReset">리셋</button>
@@ -271,8 +250,7 @@
 								<input id="FootText" disabled>
 								<button id="FootReset">리셋</button>
 							</td>
-						</tr>								
-						<!-- 
+						</tr>			
 						<tr>
 							<th>환생</th>
 							<td>
@@ -283,7 +261,6 @@
 								<input type="text" id="reincarnationText" style="width:300px;" disabled>
 							</td>
 						</tr>
-						 -->
 						<tr>
 							<th>통합분배</th>
 							<td>
@@ -292,6 +269,11 @@
 							<td>
 								갯수
 								<input type="number" id="fusionDivisionCnt" value="0" style="min-width:50px; max-width:100px;" disabled>
+								
+								<form>
+   								 <input type="radio" name="tbplus" id="tbplus" checked>+
+ 								 <input type="radio" name="tbminus" id="tbminus">-
+								</form>
 								<label style="font-weight: bold;">분배내용 입력 : </label>
 		                        <input type="text" id="inputText" disabled>
 							</td>
@@ -429,7 +411,27 @@
 									<option value="딥라잉플레이메이커(지원)">딥라잉플레이메이커(지원)</option>
 									<option value="세군도볼란테(지원)">세군도볼란테(지원)</option>
 									<option value="세군도볼란테(공격)">세군도볼란테(공격)</option>
-									<option value="박스투박스플레이메이커(지원)">박스투박스플레이메이커(지원)</option>
+									<option value="레지스타(지원)">레지스타(지원)</option>
+									<option value="로밍플레이메이커(지원)">로밍플레이메이커(지원)</option>
+									<option value="">--RM/LM--</option>
+									<option value="측면미드필더(수비)">측면미드필더(수비)</option>
+									<option value="측면미드필더(지원)">측면미드필더(지원)</option>
+									<option value="측면미드필더(공격)">측면미드필더(공격)</option>
+									<option value="윙(지원)">윙(지원)</option>
+									<option value="윙(공격)">윙(공격)</option>
+									<option value="수비형 윙(수비)">수비형 윙(수비)</option>
+									<option value="수비형 윙(지원)">수비형 윙(지원)</option>
+									<option value="와이드 플레이메이커(지원)">와이드 플레이메이커(지원)</option>
+									<option value="와이드 플레이메이커(공격)">와이드 플레이메이커(공격)</option>
+									<option value="인버티드윙어(지원)">인버티드윙어(지원)</option>
+									<option value="인버티드윙어(공격)">인버티드윙어(공격)</option>
+									<option value="">--MC--</option>
+									<option value="중앙미드필더(수비)">중앙미드필더(수비)</option>
+									<option value="중앙미드필더(지원)">중앙미드필더(지원)</option>
+									<option value="중앙미드필더(공격)">중앙미드필더(공격)</option>
+									<option value="볼위닝미드필더(지원)">볼위닝미드필더(지원)</option>
+									<option value="딥라잉플레이메이커(수비)">딥라잉플레이메이커(수비)</option>
+									<option value="딥라잉플레이메이커(지원)">딥라잉플레이메이커(지원)</option>
 									<option value="전진형플레이메이커(지원)">전진형플레이메이커(지원)</option>
 									<option value="전진형플레이메이커(공격)">전진형플레이메이커(공격)</option>
 									<option value="볼위닝미드필더(수비)">볼위닝미드필더(수비)</option>
@@ -751,6 +753,24 @@
 							</td>
 						</tr>
 						<tr>
+							<th style="min-width:100px;">당근과 채찍</th>
+							<td class="col-sm-1" style="min-width:70px;">
+								<input type="checkbox" id="cass" value="Y"><label for="cass">사용</label>
+							</td>
+							<td>
+							<select id="cassItem" style="min-width:120px;" disabled>
+									<option value="">--선택--</option>
+									<option value="훈련칭찬">훈련칭찬</option>
+									<option value="훈련비난">훈련비난</option>						
+							</select>
+							<button id="cassadd" disabled>추가</button>
+							</td>							
+							<td colspan="2">
+								<input id="cassText" style="width:500px;" disabled>
+								<button id="cassReset">리셋</button>
+							</td>
+						</tr>
+						<tr>
 							<th style="min-width:100px;">SNS</th>
 							<td class="col-sm-1" style="min-width:70px;">
 								<input type="checkbox" id="snss" value="Y"><label for="snss">사용</label>
@@ -809,6 +829,7 @@
 		var beautyCount = 0;
 		var snsCount = 0;
 		var ArenewalCount = 0;
+		var cassCount = 0;
         var minus = true;
         var fusionUseCnt = 1;
         var fusionFinish = false;
@@ -864,6 +885,7 @@
                             "펀칭(빈도)(GK전용)",
                             "페널티 박스 장악력(GK전용)"
                         ];
+		
 
         $( "#inputText" ).autocomplete({
             source: availableTags
@@ -941,6 +963,10 @@
 		}
             }
         });
+
+		$("#steroid").on("change", function()	{
+			resultSetting();
+		});
 
 		$("#tutoring").on("click", function() {
 			if($("#tutoring").is(":checked")){
@@ -1160,6 +1186,16 @@
 				$("#spmetamonFootAdd").prop("disabled", true);
 			}
 		});
+
+		$("#cass").on("click", function() {
+			if($("#cass").is(":checked")){
+				$("#cassItem").prop("disabled", false);
+				$("#cassadd").prop("disabled", false);
+			} else {
+				$("#cassItem").prop("disabled", true);
+				$("#cassadd").prop("disabled", true);
+			}
+		});
 		
 		$("#snss").on("click", function() {
 			if($("#snss").is(":checked")){
@@ -1235,6 +1271,21 @@
 					
 			resultSetting();
 		});
+		
+		$("#cassadd").on("click", function(){
+			cassCount += 1;
+			
+            if(!storeBuyCountCheck()) {
+                cassCount -= 1;
+                return false;
+            }
+			var csText = $("#cassText").val() + " ";
+			csText += $("#cassItem").val();
+			$("#cassText").val(csText);
+					
+			resultSetting();
+		});
+		
 		
 		
 		$("#FootballSchoolAdd").on("click", function() {
@@ -1524,6 +1575,16 @@
 			resultSetting();
 		});
 		
+		$("#cassReset").on("click", function() {
+			$("#cassText").val("");
+			$("#cass").prop("checked",false);
+			$("#cassItem").prop("disabled", true);
+			$("#cassadd").prop("disabled", true);
+			
+			cassCount = 0;
+			resultSetting();
+		});
+		
 		$("#endorphinReset").on("click", function() {
 			$("#endorphin").prop("checked",false);
 			$("#endorphinAdd").prop("disabled", true);
@@ -1704,34 +1765,34 @@
 			resultText += $("#name").val() + "\n";
 			
 			if($("#steroid").is(":checked")) {
-				resultText += "스테로이드 어빌+2 1000츄르\n";
-				totalPay += 1000;
+				resultText += "스테로이드 어빌+2 500츄르\n";
+				totalPay += 500;
 			}
 			
 			if($("#tutoring").is(":checked")) {
 				//resultText += "튜터링 " + $("#tutorItem").val() + $("#tutoringMinusPlus").val() + "2 1000츄르\n";
-				resultText += "튜터링 " + tutoringCount + $("#tutoringText").val() + " " + (Number(tutoringCount) * 1000)+ "츄르\n";
-				totalPay += (Number(tutoringCount) * 1000);
+				resultText += "튜터링 " + tutoringCount + $("#tutoringText").val() + " " + (Number(tutoringCount) * 500)+ "츄르\n";
+				totalPay += (Number(tutoringCount) * 500);
 			} 
 
 			if($("#endorphin").is(":checked")) {
-				resultText += "엔돌핀" + endorphinCount + $("#endorphinText").val() + " " + (Number(endorphinCount) * 400) + "츄르\n";
-				totalPay += Number(endorphinCount) * 400;
+				resultText += "엔돌핀" + endorphinCount + $("#endorphinText").val() + " " + (Number(endorphinCount) * 300) + "츄르\n";
+				totalPay += Number(endorphinCount) * 300;
 			}
 
 			if($("#setpiece").is(":checked")) {
-				resultText += "세트피스" + setpieceCount + $("#setpieceText").val() + " " + (Number(setpieceCount) * 400) + "츄르\n";
-				totalPay += Number(setpieceCount) * 400;
+				resultText += "세트피스" + setpieceCount + $("#setpieceText").val() + " " + (Number(setpieceCount) * 300) + "츄르\n";
+				totalPay += Number(setpieceCount) * 300;
 			}
 			
 			if($("#FootballSchool").is(":checked")) {
-				resultText += "마빈박사의 실험실" + footballschoolCount + $("#FootballSchoolText").val() + " " + (Number(footballschoolCount) * 400) + "츄르\n";
-				totalPay += Number(footballschoolCount) * 400;
+				resultText += "마빈박사의 실험실" + footballschoolCount + $("#FootballSchoolText").val() + " " + (Number(footballschoolCount) * 300) + "츄르\n";
+				totalPay += Number(footballschoolCount) * 300;
 			}
 			
 			if($("#Foot").is(":checked")) {
-				resultText += "약발훈련" + footCount + $("#FootText").val() + " " + (Number(footCount) * 400) + "츄르\n";
-				totalPay += Number(footCount) * 400;
+				resultText += "약발훈련" + footCount + $("#FootText").val() + " " + (Number(footCount) * 300) + "츄르\n";
+				totalPay += Number(footCount) * 300;
 			}			
 
 			if($("#jungGwanJang").is(":checked")) {
@@ -1742,8 +1803,8 @@
 			if($("#reincarnation").is(":checked")) {
 				
 				resultText += "환생";
-				resultText += " 어빌-3 포텐+5 통분3 " + $("#reincarnationText").val() + " 1000츄르\n";
-				totalPay += 1000; 
+				resultText += " 어빌-15 포텐+10 통분7 " + $("#reincarnationText").val() + " 2000츄르\n";
+				totalPay += 2000; 
 				
 			} 
 			if($("#gemble").is(":checked")) {
@@ -1757,13 +1818,13 @@
 			}
 			
 			if($("#posTTranig").is(":checked")) {
-				resultText += "포지션 훈련" + positionCount + $("#psTText").val() + " " + (Number(positionCount) * 400) + "츄르\n";
-				totalPay += Number(positionCount) * 400;
+				resultText += "포지션 훈련" + positionCount + $("#psTText").val() + " " + (Number(positionCount) * 600) + "츄르\n";
+				totalPay += Number(positionCount) * 600;
 			}
 			
 			if($("#singleTranig").is(":checked")) {
-				resultText += "개인 훈련" + singleTCount + $("#singleTraningText").val() + " " + (Number(singleTCount) * 800) + "츄르\n";
-				totalPay += Number(singleTCount) * 800;
+				resultText += "개인 훈련" + singleTCount + $("#singleTraningText").val() + " " + (Number(singleTCount) * 600) + "츄르\n";
+				totalPay += Number(singleTCount) * 600;
 			}
 			
 			if($("#skillbook").is(":checked")) {
@@ -1772,33 +1833,38 @@
 			}
 			
 			if($("#playerframe").is(":checked")) {
-				resultText += "성장호르몬" + playerframeCount + $("#playerframeText").val() + " " + (Number(playerframeCount) * 800) + "츄르\n";
-				totalPay += Number(playerframeCount) * 800;
+				resultText += "성장호르몬" + playerframeCount + $("#playerframeText").val() + " " + (Number(playerframeCount) * 500) + "츄르\n";
+				totalPay += Number(playerframeCount) * 500;
 			}
 			
 			if($("#playername").is(":checked")) {
-				resultText += "이름 변경" + playernameCount + $("#playernameText").val() + " " + (Number(playernameCount) * 800) + "츄르\n";
-				totalPay += Number(playernameCount) * 800;
+				resultText += "이름 변경" + playernameCount + $("#playernameText").val() + " " + (Number(playernameCount) * 500) + "츄르\n";
+				totalPay += Number(playernameCount) * 500;
 			}
 			
 			if($("#beauty").is(":checked")) {
-				resultText += "미용" + beautyCount + $("#beautyText").val() + " " + (Number(beautyCount) * 600) + "츄르\n";
-				totalPay += Number(beautyCount) * 600;
+				resultText += "미용" + beautyCount + $("#beautyText").val() + " " + (Number(beautyCount) * 500) + "츄르\n";
+				totalPay += Number(beautyCount) * 500;
 			}
 			
 			if($("#metamon").is(":checked")) {
-				resultText += "메타몽" + metamonFCount + $("#metamonText").val() + " " + (Number(metamonFCount) * 3000) + "츄르\n";
-				totalPay += Number(metamonFCount) * 3000;
+				resultText += "메타몽" + metamonFCount + $("#metamonText").val() + " " + (Number(metamonFCount) * 2000) + "츄르\n";
+				totalPay += Number(metamonFCount) * 2000;
 			}
 			
 			if($("#spmetamon").is(":checked")) {
-				resultText += "슈퍼메타몽" + spmetamonFCount + $("#spmetamonText").val() + " " + (Number(spmetamonFCount) * 5000) + "츄르\n";
-				totalPay += Number(spmetamonFCount) * 5000;
+				resultText += "슈퍼메타몽" + spmetamonFCount + $("#spmetamonText").val() + " " + (Number(spmetamonFCount) * 3000) + "츄르\n";
+				totalPay += Number(spmetamonFCount) * 3000;
+			}
+			
+			if($("#cass").is(":checked")) {
+				resultText += "당근과 채찍" + cassCount + $("#cassText").val() + " " + (Number(cassCount) * 200) + "츄르\n";
+				totalPay += Number(cassCount) * 200;
 			}
 			
 			if($("#snss").is(":checked")) {
-				resultText += "SNS" + snsCount + $("#snsText").val() + " " + (Number(snsCount) * 1000) + "츄르\n";
-				totalPay += Number(snsCount) * 1000;
+				resultText += "SNS" + snsCount + $("#snsText").val() + " " + (Number(snsCount) * 2000) + "츄르\n";
+				totalPay += Number(snsCount) * 2000;
 			}
 			
 			if($("#Arenewal").is(":checked")) {
