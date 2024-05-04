@@ -902,70 +902,7 @@
             source: availableTags
 		});
 
-        <!--$( "#inputText" ).on("keyup", function(e) {
-            if(e.keyCode == 13) {
-		if(fusionFinish) {
-			return;
-		} else {
-			if($("#inputText").val() != null && $("#inputText").val() != "") {
-				if(fusionFinish) {
-					return;
-				}
-			    if(minus) {
-					if(fusionUseCnt >= Number($("#fusionDivisionCnt").val())) {
-						minus = false;
-						stateChange = true;
-					}
-					$("#fusionDivisionText").val($("#fusionDivisionText").val() + " " + $("#inputText").val() + "-1");
-					fusionUseCnt++;
-			    } else if(!minus) {
-					if(stateChange && fusionUseCnt > Number($("#fusionDivisionCnt").val())) {
-						fusionUseCnt = 1;
-					}
-					if(fusionUseCnt == 1) {
-						stateChange = false;
-					}
-					if(fusionUseCnt > Number($("#fusionDivisionCnt").val())) {
-						fusionFinish = true;
-						return;
-					}
-
-					$("#fusionDivisionText").val($("#fusionDivisionText").val() + " " + $("#inputText").val() + "+1");
-					fusionUseCnt++;
-			    }
-			} else {
-				if(!minus && stateChange && fusionUseCnt == 1) {
-					alert("플러스 시킬 항목을 입력하세요.");
-					return;
-				}
-			    if(fusionUseCnt > Number($("#fusionDivisionCnt").val())) {
-					if(minus || $("#fusionDivisionText").val().indexOf("+") < 0) {
-						minus = false;
-						stateChange = true;
-						fusionUseCnt = 1;
-						return;
-					} else {
-						fusionFinish = true;
-					}
-			    }
-			    var lastItemNumber = Number($("#fusionDivisionText").val().slice(-1)) + 1;
-
-			    fusionUseCnt++;
-			    $("#fusionDivisionText").val($("#fusionDivisionText").val().substring(0,$("#fusionDivisionText").val().length-1) + lastItemNumber);
-				if(fusionUseCnt > Number($("#fusionDivisionCnt").val())) {
-					if(minus) {
-						minus = false;
-						stateChange = true;
-						fusionUseCnt = 1;
-					} else {
-						fusionFinish = true;
-					}
-				}
-			}
-			$("#inputText").val("");
-		}
-            }
-        });-->
+        
 		
 		
 		
