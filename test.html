@@ -270,12 +270,14 @@
 								갯수
 								<input type="number" id="fusionDivisionCnt" value="0" style="min-width:50px; max-width:100px;" disabled>
 								
-								<form>
-   								 <input type="radio" name="tbplus" id="tbplus" checked>+
- 								 <input type="radio" name="tbminus" id="tbminus">-
-								</form>
+								<select id="tbplmi" disabled>
+									<option value="-" id="tbminus">-</option>
+									<option value="+" id="tbplus">+</option>
+								</select>
 								<label style="font-weight: bold;">분배내용 입력 : </label>
 		                        <input type="text" id="inputText" disabled>
+								<input type="number" id="tbCnt" value="0" style="min-width:50px; max-width:100px;" disabled>
+								<button id="tbuse" disabled>추가</button>
 							</td>
 							<td colspan="2">
 								<input type="text" id="fusionDivisionText" style="width:500px;" disabled>
