@@ -270,13 +270,14 @@
 								갯수
 								<input type="number" id="fusionDivisionCnt" value="0" style="min-width:50px; max-width:100px;" disabled>
 								
-								<select id="tbplmi" disabled>
-									<option value="-" id="tbminus">-</option>
-									<option value="+" id="tbplus">+</option>
-								</select>
 								<label style="font-weight: bold;">분배내용 입력 : </label>
 		                        <input type="text" id="inputText" disabled>
+								<select id="tbplmi" style="min-width:50px;" disabled>
+									<option value="tbminus" id="tbminus">-</option>
+									<option value="tbplus" id="tbplus">+</option>
+								</select>
 								<input type="number" id="tbCnt" value="0" style="min-width:50px; max-width:100px;" disabled>
+								
 								<button id="tbuse" disabled>추가</button>
 							</td>
 							<td colspan="2">
@@ -834,8 +835,10 @@
 		var ArenewalCount = 0;
 		var cassCount = 0;
         var minus = true;
-        var fusionUseCnt = 1;
+        var fusionUseCnt = 0;
         var fusionFinish = false;
+		var tbminusCnt = 0;
+		var tbplusCnt = 0;
         var stateChange = false;
         var availableTags = [
                             "개인기",
@@ -1220,6 +1223,31 @@
 			setpieceText += $("#setpieceItem").val() + "+" + $("#setpieceCnt").val();
 			$("#setpieceText").val(setpieceText);
 					
+			resultSetting();
+		});
+		<!-- 통분 -->
+		$("#tbuse").on("click", function(){
+		 var tbCset = $("#tbplmi").val();
+		 fusionUseCnt += Number($("#fusionDivisionCnt").val());
+			if(fusionFinish) {
+			return;
+			} else {
+						tbminusCnt+=1;
+						$("#fusionDivisionText").val(tbminusCnt);
+			    if(Number($("#fusionUseCnt").val())>Number($("#tbminusCnt").val())){
+						tbminusCnt+=Number2;
+						$("#fusionDivisionText").val(tbminusCnt);
+					if(tbCset=='tbminus'){
+						tbminusCnt+=Number($("#tbCnt").val());
+						$("#fusionDivisionText").val(tbminusCnt);
+					
+					
+					}else{
+				
+					}
+				
+				}
+			};
 			resultSetting();
 		});
 		
@@ -1764,7 +1792,7 @@
 			}				
 				
 			if($("#fusionDivision").is(":checked")) {
-				resultText += "통합분배" + $("#fusionDivisionCnt").val() + " " + $("#fusionDivisionText").val() + " " + (Number($("#fusionDivisionCnt").val()) * 200) + "츄르\n\n";
+				resultText += "통합분배" + $("#fusionDivisionCnt").val() + " " + $("#fusionDivisionText").val() + " " + (Number($("#fusionDivisionCnt").val()) * 200) + "츄르\n\n" ;
 				totalPay += Number($("#fusionDivisionCnt").val()) * 200;
 			}
 			
