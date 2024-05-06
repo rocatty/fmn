@@ -1227,7 +1227,8 @@
 		<!-- 통분 -->
 		$("#tbuse").on("click", function(){
 		 var tbCset = $("#tbplmi").val();
-		 var tbResultText = $("#fusionDivisionText").val() + " ";;
+		 var tbResultText = $("#fusionDivisionText").val() + " ";
+		 var tberrText="경고: ";
 		 fusionUseCnt = Number($("#fusionDivisionCnt").val());
 			if(fusionFinish) {
 			return;
@@ -1237,8 +1238,8 @@
 						tbminusCnt+=Number($("#tbCnt").val());
 						tbTotalCnt=tbminusCnt;
 						if(tbTotalCnt>fusionUseCnt){
-							tbTotalCnt=fusionUseCnt-Number($("#tbCnt").val());
-							$("#fusionDivisionText").val(tbTotalCnt);
+							tberrText+="통분 입력 수치를 넘었습니다. 다시 생각 하세요. 통분 리셋후 다시 셋팅해주세요.";
+							$("#fusionDivisionText").val(tberrText);
 						}else{
 							tbResultText += $("#inputText").val() + " -"+$("#tbCnt").val()+", ";
 							$("#fusionDivisionText").val(tbResultText);
@@ -1253,6 +1254,10 @@
 							tbplusCnt+=Number($("#tbCnt").val());
 							tbResultText += $("#inputText").val() + " +"+$("#tbCnt").val()+", ";
 							$("#fusionDivisionText").val(tbResultText);
+						}else{
+							var tbpm=Number(tbminusCnt-tbplusCnt);
+							tberrText += "어빌 올리는건 깍은 수치를 넘을 수 없습니다. 통분 리셋후 다시 셋팅해주세요.";
+							$("#fusionDivisionText").val(tberrText);
 						}
 					}
 				
@@ -1615,16 +1620,19 @@
 		
 		$("#tbReset").on("click", function() {
 			$("#fusionDivision").prop("checked",false);
-			$("#fusionDivisionCnt").val("0");
 			$("#fusionDivisionText").val("");
 			$("#inputText").val("");
 			$("#fusionDivisionCnt").prop("disabled", true);
-                $("#inputText").prop("disabled", true);
-                $("#tbCnt").prop("disabled", true);
-				$("#tbplmi").prop("disabled", true);
-				$("#tbuse").prop("disabled", true);
-				$("#tbReset").prop("disabled", true);
+            $("#inputText").prop("disabled", true);
+            $("#tbCnt").prop("disabled", true);
+			$("#tbplmi").prop("disabled", true);
+			$("#tbuse").prop("disabled", true);
+			$("#tbReset").prop("disabled", true);
 			$("#tbCnt").val("0");
+			fusionDivisionCnt=0;
+			tbTotalCnt=0;
+			tbminusCnt=0;
+			tbplusCnt=0;
 			fusionUseCnt=0;
 			resultSetting();
 		});		
