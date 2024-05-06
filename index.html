@@ -269,11 +269,20 @@
 							<td>
 								갯수
 								<input type="number" id="fusionDivisionCnt" value="0" style="min-width:50px; max-width:100px;" disabled>
+								
 								<label style="font-weight: bold;">분배내용 입력 : </label>
 		                        <input type="text" id="inputText" disabled>
+								<select id="tbplmi" style="min-width:50px;" disabled>
+									<option value="tbminus" id="tbminus">-</option>
+									<option value="tbplus" id="tbplus">+</option>
+								</select>
+								<input type="number" id="tbCnt" value="0" style="min-width:50px; max-width:100px;" disabled>
+								
+								<button id="tbuse" disabled>추가</button>
 							</td>
 							<td colspan="2">
 								<input type="text" id="fusionDivisionText" style="width:500px;" disabled>
+								<button id="tbReset" disabled>리셋</button>
 							</td>
 						</tr>
 						<!-- <tr>
@@ -826,8 +835,11 @@
 		var ArenewalCount = 0;
 		var cassCount = 0;
         var minus = true;
-        var fusionUseCnt = 1;
+        var fusionUseCnt = 0;
         var fusionFinish = false;
+		var tbminusCnt = 0;
+		var tbplusCnt = 0;
+		var tbTotalCnt = 0;
         var stateChange = false;
         var availableTags = [
                             "개인기",
@@ -894,70 +906,10 @@
             source: availableTags
 		});
 
-        $( "#inputText" ).on("keyup", function(e) {
-            if(e.keyCode == 13) {
-		if(fusionFinish) {
-			return;
-		} else {
-			if($("#inputText").val() != null && $("#inputText").val() != "") {
-				if(fusionFinish) {
-					return;
-				}
-			    if(minus) {
-					if(fusionUseCnt >= Number($("#fusionDivisionCnt").val())) {
-						minus = false;
-						stateChange = true;
-					}
-					$("#fusionDivisionText").val($("#fusionDivisionText").val() + " " + $("#inputText").val() + "-1");
-					fusionUseCnt++;
-			    } else if(!minus) {
-					if(stateChange && fusionUseCnt > Number($("#fusionDivisionCnt").val())) {
-						fusionUseCnt = 1;
-					}
-					if(fusionUseCnt == 1) {
-						stateChange = false;
-					}
-					if(fusionUseCnt > Number($("#fusionDivisionCnt").val())) {
-						fusionFinish = true;
-						return;
-					}
-
-					$("#fusionDivisionText").val($("#fusionDivisionText").val() + " " + $("#inputText").val() + "+1");
-					fusionUseCnt++;
-			    }
-			} else {
-				if(!minus && stateChange && fusionUseCnt == 1) {
-					alert("플러스 시킬 항목을 입력하세요.");
-					return;
-				}
-			    if(fusionUseCnt > Number($("#fusionDivisionCnt").val())) {
-					if(minus || $("#fusionDivisionText").val().indexOf("+") < 0) {
-						minus = false;
-						stateChange = true;
-						fusionUseCnt = 1;
-						return;
-					} else {
-						fusionFinish = true;
-					}
-			    }
-			    var lastItemNumber = Number($("#fusionDivisionText").val().slice(-1)) + 1;
-
-			    fusionUseCnt++;
-			    $("#fusionDivisionText").val($("#fusionDivisionText").val().substring(0,$("#fusionDivisionText").val().length-1) + lastItemNumber);
-				if(fusionUseCnt > Number($("#fusionDivisionCnt").val())) {
-					if(minus) {
-						minus = false;
-						stateChange = true;
-						fusionUseCnt = 1;
-					} else {
-						fusionFinish = true;
-					}
-				}
-			}
-			$("#inputText").val("");
-		}
-            }
-        });
+        
+		
+		
+		
 
 		$("#steroid").on("change", function()	{
 			resultSetting();
@@ -1064,11 +1016,17 @@
 			if($("#fusionDivision").is(":checked")){
 				$("#fusionDivisionCnt").prop("disabled", false);
                 $("#inputText").prop("disabled", false);
-				$("#fusionDivisionText").prop("readonly", false);
+                $("#tbCnt").prop("disabled", false);
+				$("#tbplmi").prop("disabled", false);
+				$("#tbuse").prop("disabled", false);
+				$("#tbReset").prop("disabled", false);
 			} else {
 				$("#fusionDivisionCnt").prop("disabled", true);
                 $("#inputText").prop("disabled", true);
-				$("#fusionDivisionText").prop("disabled", true);
+                $("#tbCnt").prop("disabled", true);
+				$("#tbplmi").prop("disabled", true);
+				$("#tbuse").prop("disabled", true);
+				$("#tbReset").prop("disabled", true);
 			}
 		});
 		
@@ -1264,6 +1222,42 @@
 			setpieceText += $("#setpieceItem").val() + "+" + $("#setpieceCnt").val();
 			$("#setpieceText").val(setpieceText);
 					
+			resultSetting();
+		});
+		<!-- 통분 -->
+		$("#tbuse").on("click", function(){
+		 var tbCset = $("#tbplmi").val();
+		 var tbResultText = $("#fusionDivisionText").val() + " ";;
+		 fusionUseCnt = Number($("#fusionDivisionCnt").val());
+			if(fusionFinish) {
+			return;
+			} else {
+			    if(fusionUseCnt>tbTotalCnt){
+					if(tbCset=='tbminus'){
+						tbminusCnt+=Number($("#tbCnt").val());
+						tbTotalCnt=tbminusCnt;
+						if(tbTotalCnt>fusionUseCnt){
+							tbTotalCnt=fusionUseCnt-Number($("#tbCnt").val());
+							$("#fusionDivisionText").val(tbTotalCnt);
+						}else{
+							tbResultText += $("#inputText").val() + " -"+$("#tbCnt").val()+", ";
+							$("#fusionDivisionText").val(tbResultText);
+						}
+					
+					
+					}
+				
+				}else{
+					if(tbCset=='tbplus'){
+						if(tbplusCnt<tbminusCnt){
+							tbplusCnt+=Number($("#tbCnt").val());
+							tbResultText += $("#inputText").val() + " +"+$("#tbCnt").val()+", ";
+							$("#fusionDivisionText").val(tbResultText);
+						}
+					}
+				
+				}
+			};
 			resultSetting();
 		});
 		
@@ -1619,6 +1613,22 @@
 			resultSetting();
 		});		
 		
+		$("#tbReset").on("click", function() {
+			$("#fusionDivision").prop("checked",false);
+			$("#fusionDivisionCnt").val("0");
+			$("#fusionDivisionText").val("");
+			$("#inputText").val("");
+			$("#fusionDivisionCnt").prop("disabled", true);
+                $("#inputText").prop("disabled", true);
+                $("#tbCnt").prop("disabled", true);
+				$("#tbplmi").prop("disabled", true);
+				$("#tbuse").prop("disabled", true);
+				$("#tbReset").prop("disabled", true);
+			$("#tbCnt").val("0");
+			fusionUseCnt=0;
+			resultSetting();
+		});		
+		
 		$("#posTTranigReset").on("click", function() {
 			$("#psTText").val("");
 			$("#posTTranig").prop("checked",false);
@@ -1808,7 +1818,7 @@
 			}				
 				
 			if($("#fusionDivision").is(":checked")) {
-				resultText += "통합분배" + $("#fusionDivisionCnt").val() + " " + $("#fusionDivisionText").val() + " " + (Number($("#fusionDivisionCnt").val()) * 200) + "츄르\n\n";
+				resultText += "통합분배" + $("#fusionDivisionCnt").val() + " " + $("#fusionDivisionText").val() + " " + (Number($("#fusionDivisionCnt").val()) * 200) + "츄르\n\n" ;
 				totalPay += Number($("#fusionDivisionCnt").val()) * 200;
 			}
 			
